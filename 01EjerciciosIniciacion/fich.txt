@@ -1,0 +1,3 @@
+https://www.w3schools.com/ w3schools
+https://moodle.icjardin.com/my/ moodle
+https://www.php.net/manual/es/index.php phpManual

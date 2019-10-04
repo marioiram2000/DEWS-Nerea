@@ -1,0 +1,9 @@
+macarrones primero 10
+arroz primero 13
+ensalada primero 8
+filete segundo 5
+haburguesa segundo 9
+pencas_rellenas segundo 7
+arroz_con_leche postre 5
+flan postre 3
+goxua postre 4
