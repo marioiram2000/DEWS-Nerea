@@ -13,7 +13,32 @@ and open the template in the editor.
     <body>
         <?php
             $nombrePrecio = array("patatas"=>"1","cafe"=>"0.79","bocata"=>"1.09","napolitanas"=>"1");
-            $_SESSION['nombreCantidad'] = array();
+            
+            if(isset($_POST["aniadir"])){
+                foreach ($nombrePrecio as $nombre => $precio) {
+                    if(isset($_POST[$nombre])){
+                        $cantidad = $_POST["cantidad".$nombre];
+                        $_SESSION['pedido'][$nombre]=$cantidad;
+                    }
+                }
+            }
+            
+            if(isset($_POST["vaciar"])){
+                foreach ($nombrePrecio as $nombre => $precio) {
+                    $_SESSION['pedido'][$nombre]=0;
+                }
+            }
+            
+            if(isset($_POST["formalizar"])){
+                $total = 0;
+                foreach ($_SESSION['pedido'] as $nombre => $cantidad) {
+                    $precio = $nombrePrecio[$nombre];
+                    $precioTotal = intval($precio)*intval($cantidad);
+                    echo $nombre." cantidad: ".$cantidad." precio unitario:". $precio."€ precio: ".$precioTotal."€<br>";
+                    $total += $precioTotal;
+                }
+                echo 'Total de la compra: '.$total."€";
+            }
         ?>
         <form>
             <table>
@@ -31,7 +56,7 @@ and open the template in the editor.
                         }
                         $unidades = $_SESSION['pedido'][$nombre];
                         echo '<tr>';
-                            echo '<td><input type="checkbox" name="nombre" value="'.$nombre.'">'.$nombre.'</td>';
+                            echo '<td><input type="checkbox" name="'.$nombre.'" value="'.$nombre.'">'.$nombre.'</td>';
                             echo "<td>$precio €</td>";
                             echo "<td>";
                                 $selectCantidad = "cantidad".$nombre;
