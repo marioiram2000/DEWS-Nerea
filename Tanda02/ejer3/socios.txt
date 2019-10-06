@@ -1,3 +1,4 @@
 mario 123 90
 julen 123 50
 ander 123 20
+zoe 123 60

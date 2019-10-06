@@ -45,7 +45,13 @@ and open the template in the editor.
                         echo "</tr>";
                     }
                     ?>
+                
             </table>
+            <p>
+                <input type="submit" name="aniadir" value="AÑADIR UNIDADES">
+                <input type="submit" name="formalizar" value="FORMALIZAR COMPRA">
+                <input type="submit" name="vaciar" value="VACIAR CARRO">
+           </p>
         </form>
     </body>
 </html>
