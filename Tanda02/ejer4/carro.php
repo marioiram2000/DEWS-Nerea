@@ -40,7 +40,7 @@ and open the template in the editor.
                 echo 'Total de la compra: '.$total."€";
             }
         ?>
-        <form>
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
             <table>
                 <tr>
                     <th>PRODUCTO</th>
