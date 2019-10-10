@@ -78,3 +78,22 @@ function grabarPlato($cn,$nombre, $precio, $calorias, $foto){
          " ('$nombre',$precio,$calorias,'$foto') ";
    $cn->query($sqlNuevoPlato);
 }
+
+function contarPedidos($cn, $dni){
+    $sentencia="SELECT COUNT(*) cuenta from pedidos where dni='$dni'";
+    $rs=$cn->query($sentencia);
+    if ($fila=$rs->fetch_array())
+        return $fila['cuenta'];
+}
+
+function modificarDatos($cn, $nom, $ap, $dni){
+    $sentencia = "update clientes "
+                ."set nombre='$nom', apellidos= '$ap' "
+                ."where dni = '$dni'";
+    $cn -> query($sentencia);
+    if($cn->affected_rows==1){
+        return true;
+    }else{
+        return false;
+    }
+}

@@ -36,8 +36,7 @@ and open the template in the editor.
             echo "<form method='post' action='".$_SERVER['PHP_SELF']."'>";
             echo "<select name='idcliente'>";
             foreach ($todosclientes as $cliente)  //$cliente es objeto con props nombre, apellidos, etc
-            {              
-           
+            {        
                 echo "<option value='".$cliente->dni."'>".
                         $cliente->nombre ." " . $cliente->apellidos ."</option>";
             }
