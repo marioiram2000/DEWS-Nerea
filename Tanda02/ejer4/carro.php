@@ -39,6 +39,19 @@ and open the template in the editor.
                 }
                 echo 'Total de la compra: '.$total."€";
             }
+<<<<<<< HEAD
+        ?>
+        <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+            <table>
+                <tr>
+                    <th>PRODUCTO</th>
+                    <th>PRECIO</th>
+                    <th>ELIJA CANTIDAD</th>
+                    <th>PEDIDO ACTUAL</th>
+                </tr>
+                <tr>
+                    <?php 
+=======
          ?>
         <form method="POST" action="<?php echo $_SERVER['PHP_SELF'] ?>">
             <table>
@@ -50,6 +63,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <?php
+>>>>>>> c0681466af14911b25d92f88ba5fd45477b012c4
                     foreach ($nombrePrecio as $nombre => $precio) {
                         if(!isset($_SESSION['pedido'][$nombre])){
                             $_SESSION['pedido'][$nombre]=0;
