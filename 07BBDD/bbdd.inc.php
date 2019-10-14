@@ -51,7 +51,6 @@ function aniadir_cliente($cn, $dni,$nombre, $apellidos){
         else 
             return true;
     }
-    
 }
 
 function grabarPedido($cn, $ids_platos, $dni){
