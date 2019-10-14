@@ -22,7 +22,7 @@ and open the template in the editor.
         $mail->Host="smtp.gmail.com";
         $mail->Port=587;
         $mail->SMTPSecure='tls';
-        $mail->Username = "dws.ciudadjardin@gmail.com";
+        $mail->Username = "dwes.ciudadjardin@gmail.com";
         $mail->Password = "dwes2019";
         
         $mail->From = "dwes.ciudadjardin@gmail.com";
