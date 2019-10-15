@@ -4,6 +4,9 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php include './config.php';
+$cn = conectarse();
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -17,13 +20,6 @@ and open the template in the editor.
         <div id="menu">
             <a href="index.php">home</a>
         </div>
-        <div id="container">
-            <div id="bar">
-                <ul>
-                    <li><a href=""> cada enlace </a></li>
-                    <li><a href=""> cada enlace </a></li>
-                    <li><a href=""> cada enlace </a></li>
-                </ul>
-            </div>
+        
             <div id="main">
                

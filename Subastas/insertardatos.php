@@ -1,6 +1,6 @@
 <?php
 
-include './bbdd.inc.php';
+include './bbdd.config.php';
 $cn = conectarse();
 
 //zona de declaración de datos
