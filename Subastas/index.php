@@ -12,17 +12,19 @@ echo "<table>";
     echo "</tr>";
         $categoria= $_GET['id_cat'];
         $items = sacarItemsIndex($cn, $categoria);
-        print_r($items);
+        //print_r($items);
         foreach ($items as $item) {
-            //echo $item;
-            $imagen = sacarImagen($cn, $item->id);
-            $pujas = sacarPujas($cn, $item->id);
-            $pujaMasAlta = pujaMasAlta($cn, $item->id);
-            echo "<td><img src='$imagen' alt='NO HAY IMAGEN'</td>";//IMAGEN
-            echo "<td>$item->nombre</td>";//NOMBRE DEL ITEM
-            echo "<td>$pujas</td>";//CANTIDAD DE PUJAS
-            echo "<td>$pujaMasAlta</td>";//PUJA MÁS ALTA
-            echo "<td></td>";//FECHA FINAL
+            echo"<tr>";
+                $imagen = sacarImagen($cn, $item->id);
+                $pujas = sacarPujas($cn, $item->id);
+                $pujaMasAlta = pujaMasAlta($cn, $item->id);
+                $fecha = sacarFecha($cn, $item->id);
+                echo "<td><img src='$imagen' alt='NO HAY IMAGEN' width='100'/></td>";//IMAGEN
+                echo "<td><a href='itemdetalles.php?item=$item->id'>$item->nombre</a></td>";//NOMBRE DEL ITEM
+                echo "<td>$pujas</td>";//CANTIDAD DE PUJAS
+                echo "<td>$pujaMasAlta</td>";//PUJA MÁS ALTA
+                echo "<td>$fecha</td>";//FECHA FINAL
+            echo"</tr>";
         }
     }
     
