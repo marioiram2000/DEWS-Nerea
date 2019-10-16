@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2019 a las 12:08:33
+-- Tiempo de generación: 16-10-2019 a las 07:39:50
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 5.6.25
 
@@ -39,6 +39,7 @@ INSERT INTO `categorias` (`id`, `categoria`) VALUES
 (1, 'joyas'),
 (2, 'relojes'),
 (3, 'coches'),
+(4, 'muebles'),
 (5, 'motos');
 
 -- --------------------------------------------------------
@@ -58,7 +59,12 @@ CREATE TABLE `imagenes` (
 --
 
 INSERT INTO `imagenes` (`id`, `id_item`, `imagen`) VALUES
-(6, 2, 'imagenes/moto.jpg');
+(1, 1, 'imagenes\\moto1.jpg'),
+(2, 2, 'imagenes\\moto2.jpg'),
+(3, 3, 'imagenes\\moto3.jpg'),
+(4, 4, 'imagenes\\moto4.jpg'),
+(5, 5, 'imagenes\\coche1.jpg'),
+(6, 6, 'imagenes\\coche2.jpg');
 
 -- --------------------------------------------------------
 
@@ -106,7 +112,12 @@ CREATE TABLE `pujas` (
 --
 
 INSERT INTO `pujas` (`id`, `id_item`, `id_user`, `cantidad`) VALUES
-(4, 2, 2, 520);
+(1, 2, 3, 9000),
+(2, 4, 3, 30000),
+(3, 5, 3, 500000),
+(4, 2, 2, 520),
+(5, 5, 2, 600000),
+(6, 1, 2, 2000);
 
 -- --------------------------------------------------------
 
@@ -128,7 +139,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `username`, `password`, `email`, `cadenaverificacion`, `activo`) VALUES
-(2, 'mario', '123', 'marioiram2000@gmail.com', '132', 1);
+(1, 'admin', '123', 'admin@admin.com', '123', 1),
+(2, 'mario', '123', 'marioiram2000@gmail.com', '132', 1),
+(3, 'comprador1', '123', 'comprador1@comprador1.com', '123', 1);
 
 --
 -- Índices para tablas volcadas
@@ -193,7 +206,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
