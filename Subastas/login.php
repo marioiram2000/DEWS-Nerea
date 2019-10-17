@@ -20,8 +20,8 @@ if(isset($_POST['submit'])){
             echo "<p style='color:red'>Esta cuenta no está verificada. Le hemos enviado un correo para verificarla</p>";
         }
     }else{
-        $_SESSION['id']= sacarId($cn, $usu);
-        $_SESSION['usuario']=$usu;
+        $_SESSION['id_user']= sacarId($cn, $usu);
+        $_SESSION['username']=$usu;
         $anterior = $_SESSION['actual'];
         header("Location:$anterior");
     }
@@ -38,7 +38,7 @@ if(isset($_POST['submit'])){
             </tr>
             <tr>
                 <td>CONTRASEÑA</td>
-                <td><input type="text" name="password" value="<?php echo $ps?>"></td>
+                <td><input type="password" name="password" value="<?php echo $ps?>"></td>
             </tr>
     </table>
     <input type="submit" name="submit" value="Iniciar sesión">

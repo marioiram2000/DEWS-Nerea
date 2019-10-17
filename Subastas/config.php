@@ -214,3 +214,35 @@ function sacarId($cn, $nombre){
     $id = $rs->fetch_object();
     return $id;
 }
+
+//Funcion que devuelve la INFORMACION DETALLADA DE UN ITEM a traves de su id
+function sacarInfo($cn, $id){
+    $sql = "select nombre, descripcion, fechafin from items where id='$id'";
+    $rs = $cn->query($sql);
+    if($rs->num_rows==0){
+        return false;
+    }
+    $item = $rs->fetch_object();
+    return $item;
+}
+
+//funcion que mediante el ID de un item, saca TODAS las IMAGENES
+function sacarImagenes($cn, $id_item){
+    $sql = "select imagen from imagenes where id_item='$id_item'";
+    $rs = $cn->query($sql);
+    $imagenes = array();
+    while($fila = mysqli_fetch_object($rs)){
+        $imagenes[] = $fila->imagen;
+    }
+    return $imagenes;
+}
+
+//funcion que INTRODUCE una PUJA
+function introducirPuja($cn, $id_item, $id_user, $cantidad){
+    $sql = "insert into pujas (id_item, id_user, cantidad) values ('$id_item', '$id_user', '$cantidad')";
+    $rs = $cn->query($sql);
+    if($cn->affected_rows==0){
+        return false;
+    }
+    return true;
+}

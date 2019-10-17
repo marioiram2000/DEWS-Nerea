@@ -17,10 +17,10 @@ session_start();
         <div id="menu">
             <a href="index.php">Home</a>
             <?php 
-                if(!isset($_SESSION['id'])){
+                if(!isset($_SESSION['id_user'])){
                     echo "<a href='login.php'>Login</a>";
                 }else{
-                    echo "<a href='login.php'>Logout</a>";
+                    echo "<a href='logout.php'>Logout</a>";
                 }
             ?>
             

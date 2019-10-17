@@ -1,7 +1,7 @@
 <?php 
 include './cabecera.php';
 include './barra.php';
-$_SESSION['actual']="index.php";
+$_SESSION['actual']="http://localhost/Subastas/index.php";
 
 
 if(isset($_GET['id_cat'])){
@@ -20,7 +20,7 @@ echo "<table>";
                 $pujaMasAlta = pujaMasAlta($cn, $item->id);
                 $fecha = sacarFecha($cn, $item->id);
                 echo "<td><img src='$imagen' alt='NO HAY IMAGEN' width='100'/></td>";//IMAGEN
-                echo "<td><a href='itemdetalles.php?item=$item->id'>$item->nombre</a></td>";//NOMBRE DEL ITEM
+                echo "<td><a href='itemdetalles.php?item=$item->id&pujas=$pujas&pujaMasAlta=$pujaMasAlta'><strong><u>$item->nombre</u></strong></a></td>";//NOMBRE DEL ITEM
                 echo "<td>$pujas</td>";//CANTIDAD DE PUJAS
                 echo "<td>$pujaMasAlta</td>";//PUJA MÁS ALTA
                 echo "<td>$fecha</td>";//FECHA FINAL
