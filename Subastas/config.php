@@ -95,6 +95,7 @@ function comprobarUsu($cn, $usu, $ps1, $ps2, $email){
     if($ps1!=$ps2){
         return "<p style='color:red'>Las contraseñas no coinciden.</p> ";
     }
+    return "";
 }
 
 //funcion que recive un NOMBRE DE USUARIO y devuelve si EXISTE o no
@@ -105,4 +106,111 @@ function existeUsu($cn, $usuario){
         return false;
     }
     return true;
+}
+
+//funcion que devuelve una CADENA alfanumerica ALEATORIA
+function generarStringAleatorio() {
+    $length = 16;
+    $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($caracteres);
+    $resul = '';
+    for ($i = 0; $i < $length; $i++) {
+        $resul .= $caracteres[rand(0, $charactersLength - 1)];
+    }
+    return $resul;
+}
+
+//INSERTAR USUARIO en la tabla Inactivo
+function insertarUsuario($cn, $usu, $ps, $email){
+    $str = generarStringAleatorio();
+    $sql = "insert into usuarios (username, password, email, cadenaverificacion, activo) values ('$usu', '$ps', '$email', '$str', 0);";
+    $rs = $cn->query($sql);
+    if($cn->affected_rows==0){
+        return false;
+    }else{
+        return $str;
+    }
+}
+
+//ENVIA el CORREO de VERIFICACION
+function enviarCorreo($str, $email, $usu){
+    // put your code here
+        session_start();
+        require_once './PHPmailer/class.phpmailer.php';
+        require_once './PHPmailer/class.smtp.php';
+        $mail = new PHPMailer();
+        $mail->IsSMTP();
+        $mail->SMTPAuth=true;
+        
+        $mail->Host="smtp.gmail.com";
+        $mail->Port=587;
+        $mail->SMTPSecure='tls';
+        $mail->Username = "dwes.ciudadjardin@gmail.com";
+        $mail->Password = "dwes2019";
+        
+        $mail->From = "dwes.ciudadjardin@gmail.com";
+        $mail->FromName = "app web";
+        $mail->AddAddress("$email", "$usu");
+        $mail->Subject="REGISTRO EN SUBASTAS CIUDAD JARDIN";
+        
+        $texto="<a href='http://localhost/Subastas/verificacion.php/?cadena=$str'>Pinche aquí para verificar este correo</a>"
+                . "<br> Si NO conoce SUBASTAS CIUDAD JARDIN no haga nada, ha sido un error."
+                . "Si le interesa saber mas sobre nosotrs, pinche <a href='http://localhost/Subastas/index.php'>aquí</a>";
+        
+        $mail->IsHTML(true);
+        $mail->MsgHTML($texto);
+        
+        if(!$mail->Send()) {
+            echo "<p style='color:red'>NO SE PUDO ENVIAR EL CORREO</p>";
+        } else {
+            echo "<p style='color:green'>Le hemos enviado un correo de verificacion.</p> ";
+        }
+}
+
+//Funcion a la que se le pasa la CADENA DE VERIFICAION de un usuaio y pone su valor a ACTIVO
+function verificarUsuario($cn, $str){
+    $sql = "update usuarios set activo = 1 where cadenaverificacion = '$str'";
+    $rs = $cn->query($sql);
+    if($cn->affected_rows==0){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+//Funcion que VERIFICA los DATOS de LOGIN de un usuario
+function verificarUsu($cn, $usu, $ps){
+    $sql1 = "select password from usuarios where username='$usu'";
+    $rs1 = $cn->query($sql1);
+    //si el resulset ha salido false, es por que la condicion where no se ha cumplido, por lo que el usuario es incorrecto
+    
+    if($rs1->num_rows==0){
+        return "usuario";
+    }
+    
+    //Saco la clave de ese usuario y compruebo si es la que me han pasado
+    $clave = $rs1->fetch_object();
+    if($ps != $clave->password){
+        return "clave";
+    }
+    
+    //ahora hago otra consulta en la que saco el valor de activo, para saber sila cuenta se ha verificado o no
+    $sql2 = "select activo from usuarios where username = '$usu'";
+    $rs2 = $cn->query($sql2);
+    $activo = $rs2->fetch_object();
+    if($activo->activo == 0){
+        return "verificar";
+    }
+    return "verificado";
+}
+
+//Funcion que mediante un nombre de USUARIo saca el ID
+function sacarId($cn, $nombre){
+    $sql = "select id from usuarios where nombre='$nombre'";
+    $rs = $cn->query($sql);
+    if($rs->num_rows==0){
+        return false;
+    }
+    $id = $rs->fetch_object();
+    return $id;
 }

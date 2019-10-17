@@ -1,7 +1,7 @@
 <?php 
 include './cabecera.php';
 include './barra.php';
-
+$_SESSION['actual']="index.php";
 
 
 if(isset($_GET['id_cat'])){

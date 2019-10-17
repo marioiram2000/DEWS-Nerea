@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2019 a las 07:40:08
+-- Tiempo de generación: 17-10-2019 a las 09:15:27
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 5.6.25
 
@@ -117,7 +117,8 @@ INSERT INTO `pujas` (`id`, `id_item`, `id_user`, `cantidad`) VALUES
 (3, 5, 3, 500000),
 (4, 2, 2, 520),
 (5, 5, 2, 600000),
-(6, 1, 2, 2000);
+(6, 1, 2, 2000),
+(7, 5, 3, 1000000);
 
 -- --------------------------------------------------------
 
@@ -139,9 +140,14 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `username`, `password`, `email`, `cadenaverificacion`, `activo`) VALUES
-(1, 'admin', '123', 'admin@admin.com', '123', 1),
-(2, 'mario', '123', 'marioiram2000@gmail.com', '132', 1),
-(3, 'comprador1', '123', 'comprador1@comprador1.com', '123', 1);
+(1, 'admin', '123', 'admin@admin.com', '65416516', 1),
+(2, 'mario', '123', 'marioiram2000@gmail.com', '6545641', 1),
+(3, 'comprador1', '123', 'comprador1@comprador1.com', '98491', 1),
+(4, 'comprador2', '123', 'comprador2@gmail.com', 'abcdefghijklmnop', 1),
+(12, 'comprador3', '123', 'marioiram2000@gmail.com', 'SVVBeMvoPPjFZwrE', 1),
+(13, 'comprador4', '123', 'marioiram2000@gmail.com', 'SmfyMTh6lSbFnjzX', 0),
+(14, 'comprador5', '123', 'marioiram2000@gmail.com', 'v9UxdC91oYo00NnO', 1),
+(15, 'comprador6', '123', 'marioiram2000@gmail.com', 'gEwcORE6op1UPgej', 1);
 
 --
 -- Índices para tablas volcadas
@@ -181,7 +187,8 @@ ALTER TABLE `pujas`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `cadenaverificacion` (`cadenaverificacion`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -191,7 +198,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
@@ -206,12 +213,12 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Restricciones para tablas volcadas
 --
