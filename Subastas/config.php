@@ -161,9 +161,9 @@ function enviarCorreo($str, $email, $usu){
         $mail->MsgHTML($texto);
         
         if(!$mail->Send()) {
-            echo "<p style='color:red'>NO SE PUDO ENVIAR EL CORREO</p>";
+            false;
         } else {
-            echo "<p style='color:green'>Le hemos enviado un correo de verificacion.</p> ";
+            true;
         }
 }
 
@@ -206,13 +206,13 @@ function verificarUsu($cn, $usu, $ps){
 
 //Funcion que mediante un nombre de USUARIo saca el ID
 function sacarId($cn, $nombre){
-    $sql = "select id from usuarios where nombre='$nombre'";
+    $sql = "select id from usuarios where username='$nombre'";
     $rs = $cn->query($sql);
     if($rs->num_rows==0){
         return false;
     }
     $id = $rs->fetch_object();
-    return $id;
+    return $id->id;
 }
 
 //Funcion que devuelve la INFORMACION DETALLADA DE UN ITEM a traves de su id
@@ -239,10 +239,31 @@ function sacarImagenes($cn, $id_item){
 
 //funcion que INTRODUCE una PUJA
 function introducirPuja($cn, $id_item, $id_user, $cantidad){
-    $sql = "insert into pujas (id_item, id_user, cantidad) values ('$id_item', '$id_user', '$cantidad')";
+    $sql = "insert into pujas (id_item, id_user, cantidad) values ($id_item, $id_user, $cantidad)";
     $rs = $cn->query($sql);
     if($cn->affected_rows==0){
         return false;
     }
     return true;
+}
+
+//Funcion que mediante un ID de un ITEM saca TODAS las PUJAS
+function sacarPujasID($cn, $id_item){
+    $sql = "select id_user, cantidad from pujas where id_item=$id_item";
+    $rs = $cn->query($sql);
+    while($fila = mysqli_fetch_object($rs)){
+         $resul[] = $fila;
+    }
+    return $resul;
+}
+
+//Funcion que mediante el ID de un USUARIO saca el USERNAME
+function sacarUsername($cn,$id_user){
+    $sql = "select username from usuarios where id=$id_user";
+    $rs = $cn->query($sql);
+    if($rs->num_rows==0){
+        return false;
+    }     
+    $resul = $rs->fetch_object();
+    return $resul->username;
 }

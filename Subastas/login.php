@@ -24,6 +24,7 @@ if(isset($_POST['submit'])){
         $_SESSION['username']=$usu;
         $anterior = $_SESSION['actual'];
         header("Location:$anterior");
+        
     }
     
 }

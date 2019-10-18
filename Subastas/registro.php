@@ -17,7 +17,11 @@ if(isset($_POST['submit'])){
     if ($error == ""){
         $str = insertarUsuario($cn, $usu, $ps1, $email);
         if($str != false){
-            enviarCorreo($str, $email, $usu);
+            if(enviarCorreo($str, $email, $usu)){
+                echo "<p style='color:green'>Le hemos enviado un correo de verificacion.</p> ";
+            }else{
+                echo "<p style='color:red'>NO SE PUDO ENVIAR EL CORREO</p>";
+            }
         }else{
            echo "<p style='color:red'>Ha ocurrido algún imprevisto.</p> ";
         }

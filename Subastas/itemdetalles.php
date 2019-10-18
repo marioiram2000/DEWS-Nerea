@@ -18,7 +18,14 @@ if(isset($_SESSION['id_user'])){
 }
 
 $historial = "<h1>Historial de la puja</h1>";
+/* mirar que devuelve la siguente funcion y poner bien el historial*/
+$pujasAlArticulo = sacarPujasID($cn, $id_item);
+foreach ($pujasAlArticulo as $puja) {
+    $usuarioPujador = sacarUsername($cn, $puja->id_user);
+    $historial .= "<li>$usuarioPujador - $puja->cantidad €</li>";
+}
 
+//DESPUES DE PULSAR EL BOTON DE ENVIAR LA PUJA
 if(isset($_POST['submit'])){
     $pujado = $_POST['puja'];
     if(!is_numeric($pujado)){
@@ -29,12 +36,15 @@ if(isset($_POST['submit'])){
         }
     }
     
-    if($mensajeErrorPuja=""){
-        $resul = introducirPuja($cn, $id_item, $id_user, $puja);
+    if($mensajeErrorPuja==""){
+        $resul = introducirPuja($cn, $id_item, $id_user, $pujado);
+        $pujaMasAlta = $pujado;
         if(!$resul){
             echo "<p style='color:red'>Algo no ha salido como esperabamos, la puja no se ha podido introducir</p>";
+        }else{
+            $historial .= "<li>$usuarioPujador - $pujado €</li>";
         }
-        $historial .= "<li>$username - $pujado €</li>";
+        
     }
 }
 
@@ -45,7 +55,7 @@ echo "<h3><strong>Número de pujas:</strong> $pujas - "
         . " <strong>Fecha limite para pujar:</strong> $fechaFin</h3>";
 
 foreach ($imagenes as $imagen) {
-    echo "<img scr='$imagen' alt='Imagen del articulo'/>";
+    echo "<img src='$imagen' alt='Imagen del articulo' width='300'/>";
 }
 echo "<h3>$descripcion</h3>";
 echo "<h1>Puja por ese item</h1>";
