@@ -267,3 +267,23 @@ function sacarUsername($cn,$id_user){
     $resul = $rs->fetch_object();
     return $resul->username;
 }
+
+//Funcion que AÑADE un ITEM
+function aniadirItem($cn, $id_cat, $id_user, $nombre, $preciopartida, $descripcion, $fechafin){
+    $sql = "insert into items (id_cat, id_user, nombre, preciopartida, descripcion, fechafin) values ($id_cat, $id_user, '$nombre', $preciopartida, '$descripcion', '$fechafin')";
+    $rs = $cn->query($sql);
+    if($cn->affected_rows==0){
+        return false;
+    }
+    
+    $sql = "select id from items where id_cat = $id_cat and id_user = $id_user and nombre = '$nombre' and preciopartida = $preciopartida and descripcion = '$descripcion' and fechafin = '$fechafin'";
+    $rs = $cn->query($sql);
+    if($rs->num_rows==0){
+        echo "-------------------------------------------------------NO HA SELECCIONADO NADA------------------------------------------------------";
+        echo "-------------------------------------------------------$sql------------------------------------------------------";
+        return  false;
+    }
+    $resul = $rs->fetch_object();
+    return $resul->id;
+}
+

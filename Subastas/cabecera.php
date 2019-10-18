@@ -18,13 +18,13 @@ session_start();
             <a href="index.php">Home</a>
             <?php 
                 if(!isset($_SESSION['id_user'])){
-                    echo "<a href='login.php'>Login</a>";
+                    echo "<a href='http://localhost/Subastas/login.php'>Login</a>";
                 }else{
-                    echo "<a href='logout.php'>Logout</a>";
+                    echo "<a href='http://localhost/Subastas/logout.php'>Logout</a>";
                 }
             ?>
             
-            <a href="">New item</a>
+            <a href="http://localhost/Subastas/nuevoitem.php">New item</a>
         </div>
         
             <div id="main">

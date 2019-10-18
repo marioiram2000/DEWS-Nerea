@@ -18,10 +18,11 @@ if(isset($_SESSION['id_user'])){
 }
 
 $historial = "<h1>Historial de la puja</h1>";
-/* mirar que devuelve la siguente funcion y poner bien el historial*/
+
 $pujasAlArticulo = sacarPujasID($cn, $id_item);
 foreach ($pujasAlArticulo as $puja) {
     $usuarioPujador = sacarUsername($cn, $puja->id_user);
+    echo("----------------------------------------------------|id_user: $puja->id_user |------|usuario: $usuarioPujador---------------");
     $historial .= "<li>$usuarioPujador - $puja->cantidad €</li>";
 }
 
