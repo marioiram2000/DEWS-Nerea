@@ -270,16 +270,21 @@ function sacarUsername($cn,$id_user){
 
 //Funcion que AÑADE un ITEM
 function aniadirItem($cn, $id_cat, $id_user, $nombre, $preciopartida, $descripcion, $fechafin){
+    /*
+     * Cláusula OUTPUT
+        Devuelve las filas insertadas como parte de la operación de inserción. Los resultados se pueden devolver a la aplicación de procesamiento o insertarse en una tabla o variable de tabla para su nuevo procesamiento.
+     */
     $sql = "insert into items (id_cat, id_user, nombre, preciopartida, descripcion, fechafin) values ($id_cat, $id_user, '$nombre', $preciopartida, '$descripcion', '$fechafin')";
     $rs = $cn->query($sql);
-    if($cn->affected_rows==0){
+    if($cn->affected_rows<=0){
+        echo "-------------------------------------------------------EL INSERT INTO NO HA FUNCIONADO. sql: $sql------------------------------------------------------<br>";
         return false;
     }
-    
+    echo "-------------------------------------------------------EL INSERT INTO SI HA FUNCIONADO: $cn->affected_rows------------------------------------------------------<br>";
     $sql = "select id from items where id_cat = $id_cat and id_user = $id_user and nombre = '$nombre' and preciopartida = $preciopartida and descripcion = '$descripcion' and fechafin = '$fechafin'";
     $rs = $cn->query($sql);
     if($rs->num_rows==0){
-        echo "-------------------------------------------------------NO HA SELECCIONADO NADA------------------------------------------------------";
+        echo "-------------------------------------------------------NO HA SELECCIONADO NADA------------------------------------------------------<br>";
         echo "-------------------------------------------------------$sql------------------------------------------------------";
         return  false;
     }
