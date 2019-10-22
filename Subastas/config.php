@@ -239,16 +239,23 @@ function sacarImagenes($cn, $id_item){
 
 //funcion que INTRODUCE una PUJA
 function introducirPuja($cn, $id_item, $id_user, $cantidad){
-    $sql = "insert into pujas (id_item, id_user, cantidad) values ($id_item, $id_user, $cantidad)";
+    $sql = "select id from pujas where id_item=$id_item and id_user=$id_user and cantidad=$cantidad";
     $rs = $cn->query($sql);
-    if($cn->affected_rows==0){
-        return false;
+    if($rs->num_rows==0){
+        $sql = "insert into pujas (id_item, id_user, cantidad) values ($id_item, $id_user, $cantidad)";
+        $rs = $cn->query($sql);
+        if($cn->affected_rows==0){
+            return false;
+        }
+        return true;
     }
-    return true;
+    return false;
+    
 }
 
 //Funcion que mediante un ID de un ITEM saca TODAS las PUJAS
 function sacarPujasID($cn, $id_item){
+    $resul = array();
     $sql = "select id_user, cantidad from pujas where id_item=$id_item";
     $rs = $cn->query($sql);
     while($fila = mysqli_fetch_object($rs)){
@@ -266,6 +273,16 @@ function sacarUsername($cn,$id_user){
     }     
     $resul = $rs->fetch_object();
     return $resul->username;
+}
+
+//funcion que COMPRUEBA si EXISTE un ARTICULO con ese NOMBRE y de ese USUARIO
+function comprobarNombre($cn, $nombre, $id_user){
+    $sql = "select id from articulos where nombre='$nombre' and id_user='$id_user'";
+    $rs = $cn->query($sql);
+    if($rs->num_rows==0){
+        return false;
+    }
+    return true;
 }
 
 //Funcion que AÑADE un ITEM
@@ -297,6 +314,9 @@ function aniadirItem($cn, $id_cat, $id_user, $nombre, $preciopartida, $descripci
 
 //Funcion que INTRODUCE una IMAGEN 
 function insertarImagen($cn, $id_item, $imagen){
+    if(sacarIdImagen($cn, $imagen)){
+        borrarImagen($cn, $imagen);
+    }
     $sql = "insert into imagenes (id_item, imagen) values ($id_item, '$imagen')";
     $rs = $cn->query($sql);
     if($cn->affected_rows==0){
@@ -313,4 +333,15 @@ function borrarImagen($cn, $imagen){
         return false;
     }
     return true;
+}
+
+//Funcion que DEVUELVE el ID de una IMAGEN mediante su URL-IMAGEN-RUTA
+function sacarIdImagen($cn, $imagen){
+    $sql = "select id from imagenes where id_item=$id_item and imagen='$imagen'";
+    $rs = $cn->query($sql);
+    if($rs->num_rows==0){
+        return false;
+    }
+    $id = $rs->fetch_object();
+    return $id->id;
 }

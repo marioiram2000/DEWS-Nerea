@@ -2,14 +2,14 @@
 include './cabecera.php';
 include './barra.php';
 $id_item = $_GET['item'];
-$pujas = $_GET['pujas'];
-$pujaMasAlta = $_GET['pujaMasAlta'];
+$pujas = sacarPujas($cn, $id_item);
+$pujaMasAlta = pujaMasAlta($cn, $id_item);
 $info = sacarInfo($cn, $id_item);
 $nombre = $info->nombre;
 $descripcion = $info->descripcion;
 $fechaFin = $info->fechafin;
 $imagenes = sacarImagenes($cn, $id_item);
-$_SESSION['actual']="http://localhost/Subastas/itemdetalles.php?item=$id_item&pujas=$pujas&pujaMasAlta=$pujaMasAlta";
+$_SESSION['actual']="http://localhost/Subastas/itemdetalles.php?item=$id_item";
 $actual = $_SESSION['actual'];
 $mensajeErrorPuja="";
 if(isset($_SESSION['id_user'])){
@@ -19,12 +19,6 @@ if(isset($_SESSION['id_user'])){
 
 $historial = "<h1>Historial de la puja</h1>";
 
-$pujasAlArticulo = sacarPujasID($cn, $id_item);
-foreach ($pujasAlArticulo as $puja) {
-    $usuarioPujador = sacarUsername($cn, $puja->id_user);
-    echo("----------------------------------------------------|id_user: $puja->id_user |------|usuario: $usuarioPujador---------------");
-    $historial .= "<li>$usuarioPujador - $puja->cantidad €</li>";
-}
 
 //DESPUES DE PULSAR EL BOTON DE ENVIAR LA PUJA
 if(isset($_POST['submit'])){
@@ -39,20 +33,27 @@ if(isset($_POST['submit'])){
     
     if($mensajeErrorPuja==""){
         $resul = introducirPuja($cn, $id_item, $id_user, $pujado);
+        $pujas = sacarPujas($cn, $id_item);
         $pujaMasAlta = $pujado;
         if(!$resul){
-            echo "<p style='color:red'>Algo no ha salido como esperabamos, la puja no se ha podido introducir</p>";
-        }else{
-            $historial .= "<li>$usuarioPujador - $pujado €</li>";
+            //echo "<p style='color:red'>Algo no ha salido como esperabamos, la puja no se ha podido introducir</p>";
         }
         
     }
 }
 
+$pujasAlArticulo = sacarPujasID($cn, $id_item);
+foreach ($pujasAlArticulo as $puja) {
+    $usuarioPujador = sacarUsername($cn, $puja->id_user);
+    //echo("----------------------------------------------------|id_user: $puja->id_user |------|usuario: $usuarioPujador---------------");
+    $historial .= "<li>$usuarioPujador - $puja->cantidad €</li>";
+}
+
+
 
 echo "<h1>$nombre</h1>";
 echo "<h3><strong>Número de pujas:</strong> $pujas - "
-        . "<strong>Precio actual:</strong> $pujaMasAlta -"
+        . "<strong>Precio actual:</strong> $pujaMasAlta €-"
         . " <strong>Fecha limite para pujar:</strong> $fechaFin</h3>";
 
 foreach ($imagenes as $imagen) {

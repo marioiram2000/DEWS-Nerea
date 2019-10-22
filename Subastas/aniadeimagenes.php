@@ -26,8 +26,9 @@ echo $errorImagen;
     echo "<table border='1'>";
     foreach ($imagenes as $img) {
         echo "<tr>";
-        echo "<td><img src='$img' alt='imagen del item'></td>";
-        echo "<td><a href='borrarimagen.php?imagen=$imagen'>[delete]</a></td>";
+        echo "<td><img src='$img' alt='imagen del item' width='100'></td>";
+        $id_imagen = sacarIdImagen($cn, $img);
+        echo "<td><a href='borrarimagen.php?id_imagen=$id_imagen'>[delete]</a></td>";
         echo "</tr>";
     }
     echo '</table>';
@@ -41,7 +42,7 @@ echo "<form action='$self' method='POST'>";
 echo "</form>";
 echo '</table>';
 
-echo "Cuando temines de subir fotos, <a href=''>ve a ver tu item!</a>";
+echo "Cuando temines de subir fotos, <a href='http://localhost/Subastas/itemdetalles.php?item=$id_item'>ve a ver tu item!</a>";
 ?>
 
 

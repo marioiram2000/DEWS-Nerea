@@ -13,6 +13,7 @@ $precio = "";
 $aAnio = date("Y");
 $errorFecha = "";
 $errorPrecio = "";
+$errorNombre = "";
 
 if(isset($_POST['submit'])){
     $nombre = $_POST['nombre'];
@@ -25,7 +26,8 @@ if(isset($_POST['submit'])){
     $iAnio = $_POST['anio'];
     $iHora = $_POST['hora'];
     $iMinutos = $_POST['minutos'];
-    
+    $id_cat = $_POST['categoria'];
+            
     $fecha_introducida = strtotime($iDia."-".$iMes."-".$iAnio." ".$iHora.":".$iMinutos.":00" );
     $fecha_actual = strtotime(date("d-m-Y H:i",time()));
     if($fecha_introducida<$fecha_actual){
@@ -33,20 +35,15 @@ if(isset($_POST['submit'])){
     }
     
     //Comprobación del nombre
-    /*
-     * 
-     * 
-     * 
-     * 
-     * 
-     */
-    
+    if(comprobarNombre($cn, $nombre, $_SESSION['id_user'])){
+        $errorNombre = "<p style='color:red'>Ya has introducido un articulo con ese nombre.</p>";
+    }
     //Comprobación del precio
     if(!is_numeric($precio)){
         $errorPrecio .= "<p style='color:red'>Precio incorrecto.</p>";
     }
     
-    if($errorFecha == "" && $errorPrecio == ""){    
+    if($errorFecha == "" && $errorPrecio == "" && $errorNombre == ""){    
         $strfecha=$iAnio."-".$iMes."-".$iDia." ".$iHora.":".$iMinutos.":00";
         echo $strfecha;
         $idItem = aniadirItem($cn, $id_cat, $_SESSION['id_user'], $nombre, $precio, $descripcion,  $strfecha);
@@ -73,7 +70,7 @@ if(isset($_POST['submit'])){
                 <?php
 //En la barra ya he sacado las categorias, reutilizo la variable
                 foreach ($todasCategorias as $categoria) {
-                    echo "<option value='$categoria->categoria'>$categoria->categoria</option>";
+                    echo "<option value='$categoria->id'>$categoria->categoria</option>";
                 }
                 ?>
                 </select>

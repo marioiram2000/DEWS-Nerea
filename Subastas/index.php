@@ -20,7 +20,7 @@ echo "<table>";
                 $pujaMasAlta = pujaMasAlta($cn, $item->id);
                 $fecha = sacarFecha($cn, $item->id);
                 echo "<td><img src='$imagen' alt='NO HAY IMAGEN' width='100'/></td>";//IMAGEN
-                echo "<td><a href='itemdetalles.php?item=$item->id&pujas=$pujas&pujaMasAlta=$pujaMasAlta'><strong><u>$item->nombre</u></strong></a></td>";//NOMBRE DEL ITEM
+                echo "<td><a href='itemdetalles.php?item=$item->id'><strong><u>$item->nombre</u></strong></a></td>";//NOMBRE DEL ITEM
                 echo "<td>$pujas</td>";//CANTIDAD DE PUJAS
                 echo "<td>$pujaMasAlta</td>";//PUJA MÁS ALTA
                 echo "<td>$fecha</td>";//FECHA FINAL
