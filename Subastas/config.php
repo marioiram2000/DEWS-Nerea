@@ -276,11 +276,14 @@ function aniadirItem($cn, $id_cat, $id_user, $nombre, $preciopartida, $descripci
      */
     $sql = "insert into items (id_cat, id_user, nombre, preciopartida, descripcion, fechafin) values ($id_cat, $id_user, '$nombre', $preciopartida, '$descripcion', '$fechafin')";
     $rs = $cn->query($sql);
-    if($cn->affected_rows<=0){
-        echo "-------------------------------------------------------EL INSERT INTO NO HA FUNCIONADO. sql: $sql------------------------------------------------------<br>";
+    //echo $sql;
+    //echo $cn->affected_rows;
+    
+    if($cn->affected_rows==0){
+        //echo "-------------------------------------------------------EL INSERT INTO NO HA FUNCIONADO. sql: $sql------------------------------------------------------<br>";
         return false;
     }
-    echo "-------------------------------------------------------EL INSERT INTO SI HA FUNCIONADO: $cn->affected_rows------------------------------------------------------<br>";
+    //echo "-------------------------------------------------------EL INSERT INTO SI HA FUNCIONADO: $cn->affected_rows------------------------------------------------------<br>";
     $sql = "select id from items where id_cat = $id_cat and id_user = $id_user and nombre = '$nombre' and preciopartida = $preciopartida and descripcion = '$descripcion' and fechafin = '$fechafin'";
     $rs = $cn->query($sql);
     if($rs->num_rows==0){
@@ -292,3 +295,22 @@ function aniadirItem($cn, $id_cat, $id_user, $nombre, $preciopartida, $descripci
     return $resul->id;
 }
 
+//Funcion que INTRODUCE una IMAGEN 
+function insertarImagen($cn, $id_item, $imagen){
+    $sql = "insert into imagenes (id_item, imagen) values ($id_item, '$imagen')";
+    $rs = $cn->query($sql);
+    if($cn->affected_rows==0){
+        return false;
+    }
+    return true;
+}
+
+//Funcion que BORRA una IMAGEN
+function borrarImagen($cn, $imagen){
+    $sql = "DELETE FROM imagenes WHERE imagen = '$imagen';";
+    $cn->query($sql);
+    if($cn->affected_rows==0){
+        return false;
+    }
+    return true;
+}

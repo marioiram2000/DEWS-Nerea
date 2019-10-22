@@ -46,11 +46,13 @@ if(isset($_POST['submit'])){
         $errorPrecio .= "<p style='color:red'>Precio incorrecto.</p>";
     }
     
-    if($errorFecha == "" && $errorPrecio == ""){        
-        $idItem = aniadirItem($cn, $id_cat, $_SESSION['id_user'], $nombre, $precio, $descripcion, $iDia."-".$iMes."-".$iAnio." ".$iHora.":".$iMinutos.":00" );
+    if($errorFecha == "" && $errorPrecio == ""){    
+        $strfecha=$iAnio."-".$iMes."-".$iDia." ".$iHora.":".$iMinutos.":00";
+        echo $strfecha;
+        $idItem = aniadirItem($cn, $id_cat, $_SESSION['id_user'], $nombre, $precio, $descripcion,  $strfecha);
         if($idItem!=false){
-            echo "----------------------------------------------------------idItem: $idItem-----------------------------------------------";
-            //header("Locarion:aniadeimagenes.php");
+            //echo "----------------------------------------------------------idItem: $idItem-----------------------------------------------";
+            header("Location:aniadeimagenes.php?idItem=$idItem");
         }else{
             echo "<p style='color:red'>Ha ocurrido algo inesperado y el item no se ha podido añadir</p>";
         }
