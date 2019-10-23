@@ -20,8 +20,10 @@ echo "<table>";
                 $fecha = sacarFecha($cn, $item->id);
                 echo "<td><img src='$imagen' alt='NO HAY IMAGEN' width='100'/></td>";//IMAGEN
                 echo "<td><a href='http://localhost/Subastas/itemdetalles.php?item=$item->id'><strong><u>$item->nombre</u></strong></a>";//NOMBRE DEL ITEM
-                if($_SESSION['id_user'] == sacarDueño($cn, $item->id)){
+                if(isset($_SESSION['id_user'])){
+                    if($_SESSION['id_user'] == sacarDueño($cn, $item->id)){
                     echo "<a href='http://localhost/Subastas/aniadeimagenes.php?idItem=$item->id'> - [editar]</a>";
+                }
                 }
                 echo "</td>";
                 echo "<td>$pujas</td>";//CANTIDAD DE PUJAS

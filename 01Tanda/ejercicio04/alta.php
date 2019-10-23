@@ -18,35 +18,30 @@ $error = "";
         if(isset($_POST['submit'])){
             $pas = $_POST['password'];
             $usu = $_POST['usuario'];
+            $existeUsu = false;
+            
+            $f = fopen("usuarios.txt", 'a+');
+            while(!feof($f)){
+                $linea = fgets($f);
+                if($linea!=""){
+                    $lineaSeparada = explode(";", $linea);
+                    $usuario = $lineaSeparada[0];
+                    $password = $lineaSeparada[1];
 
-            $fichero = fopen("usuarios.txt", 'r+');
-            if(!$fichero){
-                echo "No se pudo abrir el archivo";
-            }else{
-                while(!feof($fichero)){
-                    $linea = fgets($fichero);
-                    if($linea!=""){
-                        $lineaSeparada = explode("  ", $linea);
-                        $usuario = $lineaSeparada[0];
-                        $password = $lineaSeparada[1];
-
-                        if($usuario==$usu){
-                            $existeUsu = false;
-                        }else{
-                            $existeUsu = true;
-                        }
+                    if($usuario==$usu){
+                        $existeUsu = true;
                     }
-                    
                 }
-                if($existeUsu){
-                    $error = "<p style='color = red'>Lo sentimos, ya existe un usuario $usu</p>";
-                    
-                }else{
-                    $cadena = $usu+"    "+$pas;
-                    fwrite($fichero, $cadena);
-                    echo "<p>$usu : has sido dado de alta</p>";
-                    echo "<a href='charla.php'>ENTRAR AL CHAT</a>";    
-                }
+
+            }
+            if($existeUsu){
+                $error = "<p style='color = red'>Lo sentimos, ya existe un usuario $usu</p>";
+            }else{
+                $cadena = $usu+";"+$pas;
+                fputs($f, $cadena);
+                fclose($f);
+                echo "<p>$usu : has sido dado de alta</p>";
+                echo "<a href='charla.php'>ENTRAR AL CHAT</a>";    
             }
         }else{
         echo $error?>

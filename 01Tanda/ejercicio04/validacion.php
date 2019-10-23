@@ -1,33 +1,31 @@
 <?php
     if(!isset($_POST['submit'])){
         header("Location: login.php");
-    }
-    $pas = $_POST['password'];
-    $usu = $_POST['usuario'];
-    
-    $fichero = fopen("usuarios.txt", 'r');
-    if(!$fichero){
-        echo "No se pudo abrir el archivo";
     }else{
-        while(!feof($fichero)){
-            $linea = fgets($fichero);
-            $lineaSeparada = explode("  ", $linea);
+        $pas = $_POST['password'];
+        $usu = $_POST['usuario'];
+
+        $f=fopen("usuarios.txt", 'r');
+        while(!feof($f)){
+            $linea = fgets($f);
+            $lineaSeparada = explode(";", $linea);
             $usuario = $lineaSeparada[0];
             $password = $lineaSeparada[1];
-
             if($usuario==$usu){
                 if($password==$pas){
 
                 }else{
-
+                    header("Location: login.php?usuario=$usuario");
                 }
             }else{
                 header("Location: alta.php");
             }
+
+
+        fclose($f);
         }
-    
-    fclose($fichero);
     }
+    
     
     
 ?>
