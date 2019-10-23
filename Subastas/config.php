@@ -314,7 +314,7 @@ function aniadirItem($cn, $id_cat, $id_user, $nombre, $preciopartida, $descripci
 
 //Funcion que INTRODUCE una IMAGEN 
 function insertarImagen($cn, $id_item, $imagen){
-    if(sacarIdImagen($cn, $imagen)){
+    if(sacarIdImagen($cn, $imagen, $id_item)){
         borrarImagen($cn, $imagen);
     }
     $sql = "insert into imagenes (id_item, imagen) values ($id_item, '$imagen')";
@@ -325,7 +325,7 @@ function insertarImagen($cn, $id_item, $imagen){
     return true;
 }
 
-//Funcion que BORRA una IMAGEN
+//Funcion que BORRA una IMAGEN teniendo en cuenta la RUTA
 function borrarImagen($cn, $imagen){
     $sql = "DELETE FROM imagenes WHERE imagen = '$imagen';";
     $cn->query($sql);
@@ -336,7 +336,7 @@ function borrarImagen($cn, $imagen){
 }
 
 //Funcion que DEVUELVE el ID de una IMAGEN mediante su URL-IMAGEN-RUTA
-function sacarIdImagen($cn, $imagen){
+function sacarIdImagen($cn, $imagen, $id_item){
     $sql = "select id from imagenes where id_item=$id_item and imagen='$imagen'";
     $rs = $cn->query($sql);
     if($rs->num_rows==0){
@@ -344,4 +344,25 @@ function sacarIdImagen($cn, $imagen){
     }
     $id = $rs->fetch_object();
     return $id->id;
+}
+
+//Funcion que BORRA una IMAGEN teniendo en cuenta el ID
+function borrarImagenID($cn, $id){
+    $sql = "DELETE FROM imagenes WHERE id = '$id';";
+    $cn->query($sql);
+    if($cn->affected_rows==0){
+        return false;
+    }
+    return true;
+}
+
+//Funcion que saca el DUEÑO de un ITEM
+function sacarDueño($cn, $id_item){
+    $sql = "select id_user from items where id = $id_item";
+    $rs = $cn->query($sql);
+    if($rs->num_rows==0){
+        return false;
+    }
+    $resul = $rs->fetch_object();
+    return $resul->id_user;
 }

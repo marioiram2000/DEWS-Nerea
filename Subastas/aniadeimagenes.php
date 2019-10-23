@@ -3,7 +3,9 @@ include './cabecera.php';
 include './barra.php';
 
 $id_item = $_GET['idItem'];
+$_SESSION['actual']="http://localhost/Subastas/aniadeimagenes.php?idItem=$id_item";
 $errorImagen="";
+
 
 echo "<h1>Imagenes actuales</h1>";
 
@@ -27,7 +29,7 @@ echo $errorImagen;
     foreach ($imagenes as $img) {
         echo "<tr>";
         echo "<td><img src='$img' alt='imagen del item' width='100'></td>";
-        $id_imagen = sacarIdImagen($cn, $img);
+        $id_imagen = sacarIdImagen($cn, $img, $id_item);
         echo "<td><a href='borrarimagen.php?id_imagen=$id_imagen'>[delete]</a></td>";
         echo "</tr>";
     }
