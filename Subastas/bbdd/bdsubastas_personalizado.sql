@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2019 a las 12:06:45
+-- Tiempo de generación: 23-10-2019 a las 06:35:13
 -- Versión del servidor: 5.7.14
 -- Versión de PHP: 5.6.25
 
@@ -63,8 +63,13 @@ INSERT INTO `imagenes` (`id`, `id_item`, `imagen`) VALUES
 (2, 2, 'imagenes\\moto2.jpg'),
 (3, 3, 'imagenes\\moto3.jpg'),
 (4, 4, 'imagenes\\moto4.jpg'),
-(5, 5, 'imagenes\\coche1.jpg'),
-(6, 6, 'imagenes\\coche2.jpg');
+(59, 37, 'imagenes/collar1-1.jfif'),
+(60, 37, 'imagenes/collar1-2.jfif'),
+(61, 38, 'imagenes/coche1.jpg'),
+(63, 40, 'imagenes/coche3.jpg'),
+(66, 41, 'imagenes/pendietes-cleopatra2.jpg'),
+(67, 41, 'imagenes/pendietes-cleopatra1.jpg'),
+(68, 39, 'imagenes/coche2.jpg');
 
 -- --------------------------------------------------------
 
@@ -91,8 +96,11 @@ INSERT INTO `items` (`id`, `id_cat`, `id_user`, `nombre`, `preciopartida`, `desc
 (2, 5, 2, 'moto2', 500, 'Una moto', '2019-11-23 00:00:00'),
 (3, 5, 2, 'moto3', 500, 'Una moto', '2019-11-23 00:00:00'),
 (4, 5, 2, 'moto 4', 1200, 'Una moto chachi', '2019-10-24 07:00:00'),
-(5, 3, 2, 'coche1', 50000, 'Un coche muy rapido y caro', '2019-11-21 00:00:00'),
-(6, 3, 2, 'coche 2', 30000, 'Un sub para casi todos los terrenos', '2019-12-13 00:00:00');
+(37, 1, 3, 'Collar', 300, 'UN collar', '2020-01-01 01:00:00'),
+(38, 3, 3, 'coche1', 20000, 'Un coche', '2020-01-01 01:00:00'),
+(39, 3, 4, 'Coche2', 20000, 'Un coche', '2020-01-01 01:00:00'),
+(40, 3, 4, 'Coche3', 22000, 'un coche', '2022-01-01 01:00:00'),
+(41, 1, 4, 'pendientes', 30, 'unos pendientes', '2020-01-01 01:00:00');
 
 -- --------------------------------------------------------
 
@@ -114,11 +122,9 @@ CREATE TABLE `pujas` (
 INSERT INTO `pujas` (`id`, `id_item`, `id_user`, `cantidad`) VALUES
 (1, 2, 3, 9000),
 (2, 4, 3, 30000),
-(3, 5, 3, 500000),
 (4, 2, 2, 520),
-(5, 5, 2, 600000),
-(6, 1, 2, 2000),
-(7, 5, 3, 1000000);
+(10, 1, 2, 3000),
+(12, 1, 2, 4000);
 
 -- --------------------------------------------------------
 
@@ -147,7 +153,8 @@ INSERT INTO `usuarios` (`id`, `username`, `password`, `email`, `cadenaverificaci
 (12, 'comprador3', '123', 'marioiram2000@gmail.com', 'SVVBeMvoPPjFZwrE', 1),
 (13, 'comprador4', '123', 'marioiram2000@gmail.com', 'SmfyMTh6lSbFnjzX', 0),
 (14, 'comprador5', '123', 'marioiram2000@gmail.com', 'v9UxdC91oYo00NnO', 1),
-(15, 'comprador6', '123', 'marioiram2000@gmail.com', 'gEwcORE6op1UPgej', 1);
+(15, 'comprador6', '123', 'marioiram2000@gmail.com', 'gEwcORE6op1UPgej', 1),
+(16, 'comprador7', '123', 'marioiram2000@gmail.com', 'U34T46AN53FFLTTd', 0);
 
 --
 -- Índices para tablas volcadas
@@ -203,22 +210,22 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `imagenes`
 --
 ALTER TABLE `imagenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT de la tabla `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT de la tabla `pujas`
 --
 ALTER TABLE `pujas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- Restricciones para tablas volcadas
 --
