@@ -8,9 +8,8 @@ class c_prestamos extends CI_Controller{
     
     public function index()
     {
-        
         $this->load->view("v_cabecera");
-
+        
         $this->load->view("v_pie");
     }
 }
