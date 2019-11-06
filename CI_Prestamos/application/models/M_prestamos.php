@@ -28,18 +28,18 @@ class M_prestamos extends CI_Model{
     function codificarLibros($libros){
         //PoesiaArray ( [0] => Array ( [idlibro] => 10 [titulo] => Viaje del Parnaso [idautor] => 2 ) )
         $resul = array();
+        print_r($libros);
         foreach ($libros as $libro) {
-            $rs=$this->db->query("select nombre from autores where idautor='".$libro['idautor']."'");
-            $autor=$rs->row()->nombre;
-            $resul[]['idlibro'] = $libro['idlibro'];
-            $resul[]['titulo'] = $libro['titulo'];
-            $resul[]['autor'] = $libro[];
+            $rs=$this->db->query("select nombre from autores where idautor=".$libro['idautor']);
+            $autor=$rs->row();
+            $id = $libro['idlibro'];
+            $resul[$id]['id']=$id;
+            $resul[$id]['titulo']= $libro['titulo'];
+            $resul[$id]['autor'] = $autor->nombre;  
         }
-        
-        
-        
+        return $resul;
     }
-    
+ 
     
     
     
