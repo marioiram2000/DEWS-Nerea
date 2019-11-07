@@ -124,3 +124,13 @@ td {
     border: thin solid #cccccc;
     padding: 10px;
 }
+
+input[type="submit"]{
+    padding:6px 10px 5px;
+    font-size: 14px;
+    background-color: #555555;
+    font-weight:bold;
+    color: #ffffff;
+    border-radius:30px;
+    border: 1px solid #999;
+}

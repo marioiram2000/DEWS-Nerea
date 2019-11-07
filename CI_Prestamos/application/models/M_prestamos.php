@@ -39,10 +39,38 @@ class M_prestamos extends CI_Model{
         }
         return $resul;
     }
- 
     
+    function prestar($idlibro){
+        $insertado=false;
+        if($this->m_prestamos->comprobarPrestamos($idlibro)){
+            $fecha_actual = strtotime(date("d-m-Y H:i",time()));
+            $sql = "insert into prestamos (fecha, idlibro) values ('$fecha_actual', $idlibro)";
+            $insertado=$this->db->query($sql);
+        }        
+        return $insertado;
+        
+    }
     
+    function comprobarPrestamos($idlibro){
+        $rs=$this->db->query("select count(idlibro) cuantos from prestamos where idlibro=$idlibro");
+        $resul = $rs->row()->cuantos;
+        if($resul<4){
+            return true;
+        }
+        return FALSE;
+    }
     
+    function recorrerPrestamos($libros_seleccionados){
+        $introducidos = array();
+        foreach ($libros_seleccionados as $idlibro) {            
+            $resul = $this->m_prestamos->prestar($idlibro);
+            if($resul){
+                $titulo = $this->db->query("select titulo from libros where idlibro=$idlibro");
+                $introducidos[]=$titulo->row()->titulo;
+            }
+        }
+        return $introducidos;
+    }
     
     
     
