@@ -1,5 +1,4 @@
-
-            <p>Mario orozco</p>
-        </div>
-    </body>
-</html>
+<footer>
+    <p>Mario orozco</p>
+</footer>
+    

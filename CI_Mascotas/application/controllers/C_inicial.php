@@ -8,10 +8,10 @@ class C_inicial extends CI_Controller{
     
     public function index()
     {
-        
-        
         $this->load->view("v_cabecera");
+        $this->load->view("v_inicio");
         $this->load->view("v_pie");
+        $this->load->view("v_fin");
         
     }
 }

@@ -15,7 +15,18 @@ $hojadeestilos = base_url()."css/stylesheet.css"
     </head>
     <body>
         <div id="header">
-            <h1>TUS MASCOTAS</h1>            
+            <h1>TUS MASCOTAS</h1> 
+            <div id="menu">
+                <a href="index.php">Home</a>
+                <?php
+                    if(!isset($_SESSION['id_user'])){
+                        echo "<a href=''>Registro</a>";
+                    }else{
+                        echo "<a href=''>Desconectarse</a>";
+                        echo "<a href=''>Nueva mascota</a>";
+                    }
+                ?>
+            </div>
         </div>
         <div id="container">
             <div id="bar">
