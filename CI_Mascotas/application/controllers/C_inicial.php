@@ -14,4 +14,11 @@ class C_inicial extends CI_Controller{
         $this->load->view("v_fin");
         
     }
+    
+    public function registro(){
+        $this->load->view("v_cabecera");
+        $this->load->view("v_registro");
+        $this->load->view("v_pie");
+        $this->load->view("v_fin");        
+    }
 }

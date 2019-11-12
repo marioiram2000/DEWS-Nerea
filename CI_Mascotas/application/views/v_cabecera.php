@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php 
 /*
- * RECIVE $todosGeneros, un array con todos los generos. Cada posicion es un array asociativo con clave 'genero'
- */
+* RECIVE 
+*/
 
 $hojadeestilos = base_url()."css/stylesheet.css"
         
@@ -17,10 +17,12 @@ $hojadeestilos = base_url()."css/stylesheet.css"
         <div id="header">
             <h1>TUS MASCOTAS</h1> 
             <div id="menu">
-                <a href="index.php">Home</a>
                 <?php
+                    $enlace = site_url()."/c_inicial/index";          
+                    echo "<a href='$enlace'>Home</a>";
                     if(!isset($_SESSION['id_user'])){
-                        echo "<a href=''>Registro</a>";
+                        $enlace = site_url()."/c_inicial/registro";                    
+                        echo "<a href='$enlace'>Registro</a>";
                     }else{
                         echo "<a href=''>Desconectarse</a>";
                         echo "<a href=''>Nueva mascota</a>";

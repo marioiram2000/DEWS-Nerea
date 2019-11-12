@@ -83,7 +83,7 @@ a:hover, a:active {
 
 #bar {
     float: left;
-    width: 200px;
+    width: 15%;
     background: coral;
     padding: 10px;
     margin-right: 30px;
@@ -150,4 +150,25 @@ input[type="submit"]{
     border: 1px solid #999;
 }
 
+.div_inicio_contenedor{
+    display: inline-flex;
+    width: 75%;
+}
+.div_inicio_contenedor img{
+    width: 30%;
+    transform: rotateY(180deg);
+}
+.div_inicio_texto{
+    width: 70%;
+    font-size: 1.5em;
+    margin-top:5%;
+}
+
+.tabla_formulario, .tabla_formulario td{
+    border: 0;
+}
+
+.mensajeError{
+    color: red;
+}
 
