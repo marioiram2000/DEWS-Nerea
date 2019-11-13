@@ -12,9 +12,9 @@ body {
 }
 
 footer{
-	background-color: #131e2c;
-	color: orange;
-	clear: both;
+    background-color: #131e2c;
+    color: orange;
+    clear: both;
     position: relative;
     height: 100px;
     margin-bottom: -1px;
@@ -143,9 +143,9 @@ td {
 input[type="submit"]{
     padding:6px 10px 5px;
     font-size: 14px;
-    background-color: #555555;
+    background-color: #131e2c;
     font-weight:bold;
-    color: #ffffff;
+    color: orange;
     border-radius:30px;
     border: 1px solid #999;
 }

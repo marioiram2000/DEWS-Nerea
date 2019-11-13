@@ -5,44 +5,49 @@ $email = "";
 $username = "";
 $psw1 = "";
 $psw2 = "";
-$errorUsername="";
-$errorContraseñas="";
 ?>
 
 <div class="div_inicio_contenedor">
-    <img src= "<?php echo base_url().'imagenes/loro.png'; ?>" alt="Imagen de bienvenida" width="300px">
+    <img src= "<?php echo base_url().'imagenes/gato_persa_enfadado.jpg'; ?>" alt="Imagen de registro" height="300px" style='margin: 20px;'>
     <div class="div_inicio_texto">
         <h1>¡¿Te quieres registrar?!</h1>
         <h2>¡Solo tienes que rellenar el siguiente formulario!</h2>
+        <?php
+        echo form_open(site_url()."/c_inicial/verificar");
+        echo '<table class="tabla_formulario">';
+            echo "<tr>";
+                echo "<td>".form_label("Nombre:")."</td>";
+                echo "<td>".form_input("nombre", set_value('nombre'), "required")."</td>";
+            echo "</tr>";
+            echo "<tr>";
+                echo "<td>".form_label("Apellidos:")."</td>";
+                echo "<td>".form_input("apellidos", set_value('apellidos'))."</td>";
+            echo "</tr>"; 
+            echo "<tr>";
+                echo "<td>".form_label("Correo:")."</td>";
+                echo "<td>".form_input("correo", set_value('correo'), "required")."</td>";
+                echo "<td><p class='mensajeError'>". form_error('correo') ."</p></td>";
+            echo "</tr>";
+            echo "<tr>";
+                echo "<td>".form_label("Nombre de usuario:")."</td>";
+                echo "<td>".form_input("username", set_value('username'), "required")."</td>";
+                echo "<td><p class='mensajeError'>". form_error('username') ."</p></td>";
+            echo "</tr>";    
+            echo "<tr>";
+                echo "<td>".form_label("Contraseña:")."</td>";
+                echo "<td>".form_password("psw1", set_value('psw1'), "required")."</td>";
+                echo "<td><p class='mensajeError'>". form_error('psw1') ."</p></td>";
+            echo "</tr>";  
+            echo "<tr>";
+                echo "<td>".form_label("Repite la contraseña:")."</td>";
+                echo "<td>". form_password("psw2", set_value('psw2'), "required")."</td>";
+            echo "</tr>";   
+        echo "</table>";        
+        echo form_submit('submit', 'Registrarse');
+        echo form_close();
+        ?>
         <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
-            <table class="tabla_formulario">
-                <tr>
-                    <td><label for="nombre">Nombre:</label></td>
-                    <td><input type="text" name="nombre" id="nombre" value="<?php $nombre?>"></td>
-                </tr>
-                <tr>
-                    <td><label for="apellidos">Apellidos:</label></td>
-                    <td><input type="text" name="apellidos" id="apellidos" value="<?php $apellidos?>"></td>
-                </tr>
-                <tr>
-                    <td><label for="correo">Correo:</label></td>
-                    <td><input type="email" name="correo" id="correo" value="<?php $email?>"> </td>
-                </tr>
-                <tr>
-                    <td><label for="username">Nombre de usuario:</label></td>
-                    <td><input type="text" name="username" id="username" value="<?php $username?>"> </td>
-                    <td><p class="mensajeError"><?php $errorUsername?></p></td>
-                </tr>
-                <tr>
-                    <td><label for="psw1">Contraseña:</label></td>
-                    <td><input type="password" name="psw1" id="psw1" value="<?php $psw1?>"></td>
-                    <td><p class="mensajeError"><?php $errorContraseñas?></p></td>
-                </tr>
-                <tr>
-                    <td><label for="psw2">Repite la contraseña:</label></td>
-                    <td><input type="password" name="psw2" id="psw2" value="<?php $psw2?>"></td>
-                </tr>
-            </table>
+            
         </form>
     </div>
 </div>

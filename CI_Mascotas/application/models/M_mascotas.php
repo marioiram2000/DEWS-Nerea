@@ -11,5 +11,19 @@ class M_mascotas extends CI_Model{
         $db=$this->load->database();
     }
     
+    function comprobarUsername($username){
+        $rs=$this->db->query("select iduser from usuarios where username = '$username'");
+        if($rs->num_rows() == 0){
+            return true;
+        }
+        return false;
+    }
+    function comprobarCorreo($correo){
+    $rs=$this->db->query("select iduser from usuarios where correo = '$correo'");
+    if($rs->num_rows() == 0){
+        return true;
+    }
+    return false;
+    }
     
 }
