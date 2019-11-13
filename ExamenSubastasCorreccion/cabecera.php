@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<?php include './config.php';
+<?php 
+include './config.php';
 $cn = conectarse();
 session_start();
 ?>
