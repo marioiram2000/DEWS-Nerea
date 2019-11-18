@@ -26,4 +26,20 @@ class M_mascotas extends CI_Model{
     return false;
     }
     
+    function registrarUsuario($nombre, $apellidos, $correo, $username, $password){
+        $imagen = addslashes(file_get_contents("imagenes/usuario.png"));
+        $data = array(
+            'nombre' => $nombre,
+            'apellidos' => $apellidos,
+            'correo' => $correo,
+            'username' => $username,
+            'password' => $password,
+            'imagen' => $imagen
+        );
+        if($this->db->insert('usuarios', $data)){
+            return $this->db->insert_id();
+        }
+        return false;
+    }
+    
 }

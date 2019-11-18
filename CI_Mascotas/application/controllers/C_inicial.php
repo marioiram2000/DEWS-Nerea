@@ -25,15 +25,25 @@ class C_inicial extends CI_Controller{
     public function verificar(){
         $this->load->view("v_cabecera");
         
-        $this->form_validation->set_rules('correo', 'Correo', 'callback_correo_check');
-        $this->form_validation->set_rules('username', 'Nombre de usuario', 'callback_username_check');
-        $this->form_validation->set_rules('psw1', 'Confirm Password', 'matches[psw2]',
-                array('matches' => 'Las contraseñas no coinciden'));
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required');
+        $this->form_validation->set_rules('apellidos', 'Apellidos', 'required');
+        $this->form_validation->set_rules('correo', 'Correo', 'required|callback_correo_check');
+        $this->form_validation->set_rules('username', 'Nombre de usuario', 'required|callback_username_check');
+        $this->form_validation->set_rules('psw1', 'Password', 'required');
+        $this->form_validation->set_rules('psw2', 'Confirm Password', 'required|matches[psw1]');//''
         
+        $this->form_validation->set_message('required', 'El campo es obligatorio');
+        $this->form_validation->set_message('matches', 'Las contraseñas no coinciden');
+        /*
+        $_SESSION['item'] = 'value';
+        $this->session->mark_as_flash('item');
+        */
         if ($this->form_validation->run() == FALSE){
-                $this->load->view('v_registro');
+            $this->load->view('v_registro');
         }else{
-                $this->load->view('v_registrado');
+            $_SESSION['id_user'] = $this->m_mascotas->registrarUsuario($_POST['nombre'], $_POST['apellidos'], $_POST['correo'], $_POST['username'], $_POST['psw1']);
+            $this->load->view('v_registrado');
+            
         }
         
         $this->load->view("v_pie");
