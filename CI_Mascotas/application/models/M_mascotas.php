@@ -42,4 +42,13 @@ class M_mascotas extends CI_Model{
         return false;
     }
     
+    function comprobarUsuarioContraseña($usu, $pas){
+        echo "USUARIO: $usu CONTRASEÑA: $pas";
+        $rs= $this->db->query("select username from usuarios where username='$usu' and password='$pas'");
+        if($rs->num_rows == 0){
+            return false;
+        }
+        return true;
+    }
+    
 }

@@ -21,11 +21,16 @@ $hojadeestilos = base_url()."css/stylesheet.css"
                     $enlace = site_url()."/c_inicial/index";          
                     echo "<a href='$enlace'>Home</a>";
                     if(!isset($_SESSION['id_user'])){
+                        $enlace = site_url()."/c_inicial/iniciar_sesion";
+                        echo "<a href='$enlace'>Iniciar sesion</a>";
                         $enlace = site_url()."/c_inicial/registro";                    
                         echo "<a href='$enlace'>Registro</a>";
                     }else{
+                        $enlace = site_url()."c_inicial/desconectarse";
                         echo "<a href=''>Desconectarse</a>";
+                        $enlace = site_url()."c_inicial/nueva_mascota";
                         echo "<a href=''>Nueva mascota</a>";
+                        echo "<a href=''>".$_SESSION['username']."</a>";
                     }
                 ?>
             </div>

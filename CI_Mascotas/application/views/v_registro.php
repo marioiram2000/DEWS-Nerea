@@ -13,7 +13,7 @@ $psw2 = "";
         <h1>¡¿Te quieres registrar?!</h1>
         <h2>¡Solo tienes que rellenar el siguiente formulario!</h2>
         <?php
-        echo form_open(site_url()."/c_inicial/verificar");
+        echo form_open(site_url()."/c_inicial/registro");
         echo '<table class="tabla_formulario">';
             echo "<tr>";
                 echo "<td>".form_label("Nombre:")."</td>";
