@@ -1,19 +1,10 @@
-<?php
-$nombre = "";
-$apellidos = "";
-$email = "";
-$username = "";
-$psw1 = "";
-$psw2 = "";
-?>
-
 <div class="div_inicio_contenedor">
     <img src= "<?php echo base_url().'imagenes/gato_persa_enfadado.jpg'; ?>" alt="Imagen de registro" height="300px" style='margin: 20px;'>
     <div class="div_inicio_texto">
         <h1>¡¿Te quieres registrar?!</h1>
         <h2>¡Solo tienes que rellenar el siguiente formulario!</h2>
         <?php
-        echo form_open(site_url()."/c_inicial/registro");
+        echo form_open(site_url()."/c_formularios/registro");
         echo '<table class="tabla_formulario">';
             echo "<tr>";
                 echo "<td>".form_label("Nombre:")."</td>";
