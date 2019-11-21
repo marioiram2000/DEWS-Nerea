@@ -41,9 +41,6 @@
         echo form_submit('submit', 'Registrarse');
         echo form_close();
         ?>
-        <form action="<?php $_SERVER['PHP_SELF']?>" method="POST">
-            
-        </form>
     </div>
 </div>
 

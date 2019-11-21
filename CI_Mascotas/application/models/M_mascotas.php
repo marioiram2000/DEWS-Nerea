@@ -34,4 +34,7 @@ class M_mascotas extends CI_Model{
             echo '  false '.$resul;
             
             return false;
+           
+        }
+    }
 }
