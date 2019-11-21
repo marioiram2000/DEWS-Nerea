@@ -67,7 +67,7 @@ class C_cines extends CI_Controller{
     
     
     public function paso3($idfuncion, $num_sala, $precio_entrada){
-        //$this->load->view("v_cabecera");
+        $this->load->view("v_cabecera");
         
         $datos = array();
         
