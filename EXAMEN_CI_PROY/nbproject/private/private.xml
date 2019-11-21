@@ -8,5 +8,12 @@
             <file>file:/C:/ejerweb_php/exam_2015_1eval_ci/application/controllers/c_inicio.php</file>
             <file>file:/C:/ejerweb_php/exam_2015_1eval_ci/application/config/routes.php</file>
         </group>
+        <group>
+            <file>file:/C:/Users/dw2_alum4/Desktop/DEWS-Nerea/EXAMEN_CI_PROY/application/views/v_paso2.php</file>
+            <file>file:/C:/Users/dw2_alum4/Desktop/DEWS-Nerea/EXAMEN_CI_PROY/application/views/v_paso1.php</file>
+            <file>file:/C:/Users/dw2_alum4/Desktop/DEWS-Nerea/EXAMEN_CI_PROY/application/views/v_paso3.php</file>
+            <file>file:/C:/Users/dw2_alum4/Desktop/DEWS-Nerea/EXAMEN_CI_PROY/application/models/M_cines.php</file>
+            <file>file:/C:/Users/dw2_alum4/Desktop/DEWS-Nerea/EXAMEN_CI_PROY/application/controllers/C_cines.php</file>
+        </group>
     </open-files>
 </project-private>
