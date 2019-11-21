@@ -31,6 +31,7 @@ class M_cines extends CI_Model{
         return $rs->result_array();    
     }
     function comprobarSitios($idfuncion, $num_sala){
+        
         $query = "select capacidad from salas where numero = '$num_sala'";
         $rs = $this->db->query($query);
         $capacidad = $rs->row()->capacidad;
