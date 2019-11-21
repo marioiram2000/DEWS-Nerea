@@ -14,16 +14,16 @@ class C_inicial extends CI_Controller{
         $this->load->view("v_fin");
         
     }
-
-    public function desconectarse(){
-        $this->session->sess_destroy();
-        redirect('c_inicial/index', 'refresh');
+    
+    public function registroExitoso(){
+        $this->load->view("v_cabecera");
+        $this->load->view("v_registrado");
+        $this->load->view("v_pie");
+        $this->load->view("v_fin");
     }
     
-    public function nueva_mascota(){
-        $this->load->view("v_cabecera");
-        
-        
-        $this->load->view("v_fin");
+    public function desconectarse(){
+        $this->session->sess_destroy();
+        redirect('c_inicial/index', 'refresh');     
     }
 }

@@ -22,22 +22,16 @@ class M_mascotas extends CI_Model{
             'imagen' => $imagen
         );
         if($this->db->insert('usuarios', $data)){
-            return $this->db->insert_id();
+            return true;
         }
         return false;
     }
     
     function comprobarUsuarioContraseña($usu, $pas){
-        /*echo "USUARIO: $usu CONTRASEÑA: $pas";*/
         $rs= $this->db->query("select count(*) cont from usuarios where username='$usu' and password='$pas'");
         $resul = $rs->row();
         if($resul->cont < 1){
             echo '  false '.$resul;
             
             return false;
-        }
-        echo '  true ';
-        return true;
-    }
-    
 }

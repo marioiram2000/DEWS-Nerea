@@ -28,7 +28,7 @@ $hojadeestilos = base_url()."css/stylesheet.css"
                     }else{
                         $enlace = site_url()."/c_inicial/desconectarse";
                         echo "<a href='$enlace'>Desconectarse</a>";
-                        $enlace = site_url()."/c_inicial/nueva_mascota";
+                        $enlace = site_url()."/c_formularios/nueva_mascota";
                         echo "<a href='$enlace'>Nueva mascota</a>";
                         echo "<a href=''>".$_SESSION['username']."</a>";
                     }

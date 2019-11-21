@@ -1,12 +1,3 @@
-<?php
-$nombre = "";
-$apellidos = "";
-$email = "";
-$username = "";
-$psw1 = "";
-$psw2 = "";
-?>
-
 <div class="div_inicio_contenedor">
     <img src= "<?php echo base_url().'imagenes/gato_persa_enfadado.jpg'; ?>" alt="Imagen de registro" height="300px" style='margin: 20px;'>
     <div class="div_inicio_texto">
