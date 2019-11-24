@@ -3,7 +3,7 @@
 /*
 * RECIVE 
 */
-
+$especies = $this->m_mascotas->sacarEspecies();
 $hojadeestilos = base_url()."css/stylesheet.css"
         
 ?>
@@ -30,7 +30,8 @@ $hojadeestilos = base_url()."css/stylesheet.css"
                         echo "<a href='$enlace'>Desconectarse</a>";
                         $enlace = site_url()."/c_formularios/nueva_mascota";
                         echo "<a href='$enlace'>Nueva mascota</a>";
-                        echo "<a href=''>".$_SESSION['username']."</a>";
+                        $enlace = site_url()."/c_inicial/perfil";
+                        echo "<a href='$enlace'>".$_SESSION['username']."</a>";
                     }
                 ?>
             </div>
@@ -39,13 +40,12 @@ $hojadeestilos = base_url()."css/stylesheet.css"
             <div id="bar">
                 <p>Busca por especies:</p>
                 <ul>
-                    <?php
-                    /*
-                    foreach ($todosGeneros as $genero) {
-                        $g = $genero['genero'];
-                        $enlace = site_url()."/c_prestamos/clasificar/$g";
-                        echo "<li><a href='$enlace'> $g </a></li>";
-                    }*/
+                    <?php                    
+                    foreach ($especies as $especie) {
+                        $e = $especie['especie'];
+                        $enlace = site_url()."/c_inicial/verEspecie/$e";
+                        echo "<li><a href='$enlace'> ".$e."S</a></li>";
+                    }
                     ?>
                 </ul>
             </div>
