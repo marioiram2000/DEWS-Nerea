@@ -8,6 +8,26 @@
         <servlet-name>ServletRegistro</servlet-name>
         <servlet-class>servlets.ServletRegistro</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletLogin</servlet-name>
+        <servlet-class>servlets.ServletLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletRedir</servlet-name>
+        <servlet-class>servlets.ServletRedir</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletPregunta</servlet-name>
+        <servlet-class>servlets.ServletPregunta</servlet-class>
+        <init-param>
+            <param-name>LIM1</param-name>
+            <param-value>100</param-value>
+        </init-param>
+        <init-param>
+            <param-name>LIM2</param-name>
+            <param-value>200</param-value>
+        </init-param>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletSaludo</servlet-name>
         <url-pattern>/ServletSaludo</url-pattern>
@@ -15,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>ServletRegistro</servlet-name>
         <url-pattern>/Registro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletLogin</servlet-name>
+        <url-pattern>/ServletLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletRedir</servlet-name>
+        <url-pattern>/ServletRedir</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPregunta</servlet-name>
+        <url-pattern>/ServletPregunta</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
