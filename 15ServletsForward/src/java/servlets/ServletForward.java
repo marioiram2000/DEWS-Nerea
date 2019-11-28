@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servlets;
 
 import java.io.IOException;
@@ -8,11 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author pei4
+ */
+public class ServletForward extends HttpServlet {
 
-public class ServletRedir extends HttpServlet {
-
-    private static final String PASS = "123";
-    
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -21,10 +27,10 @@ public class ServletRedir extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletRedir</title>");            
+            out.println("<title>Servlet ServletForward</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletRedir at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletForward at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -34,23 +40,25 @@ public class ServletRedir extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("ServletLogin");
+        processRequest(request, response);
     }
 
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("submitlogin")!=null && request.getParameter("pass").equals(PASS)){
-            response.sendRedirect("ServletPregunta");
-        }else{
-            response.sendRedirect("ServletLogin?error");
+       
+        
+        if (!request.getParameter("nombre").equals("admin")){
+            response.sendRedirect("index.html");            
+        }
+        else{
+            //Redirigir a ServletAdmin, conservando request (sin cambiar de petición)            
+            request.getRequestDispatcher("ServletAdmin").forward(request, response); //Funciona     
+            //response.sendRedirect("ServletAdmin" ); //no funciona
         }
     }
 
-    
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
+   
+
 }

@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servlets;
 
 import java.io.IOException;
@@ -8,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ServletLogin extends HttpServlet {
 
+public class ServletAdmin extends HttpServlet {
+
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -18,51 +24,45 @@ public class ServletLogin extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletLogin</title>");            
+            out.println("<title>Servlet ServletAdmin</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletLogin at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletAdmin at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
+   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String error = "";
-        if(request.getParameter("error")!=null){
-            error = "Contraseña erronea";
-        }
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletLogin</title>");            
-            out.println("</head>");
-            out.println("<body>");            
-            out.println("<h1>Introduce la contraseña</h1>");
-            out.println("<form method='post' action='ServletRedir'>");
-            out.println("<input type='password' name='pass'/>");
-            out.println(error);
-            out.println("<input type='submit' name='submitlogin' value='ENTRAR'/>");
-            out.println("</form>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-        
+       doPost(request,response);
     }
 
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ServletAdmin</title>");            
+            out.println("</head>");
+            out.println("<body>");
+             out.println("<p>"+ request.getParameter("nombre")+"  "
+                     + request.getParameter("dpto")+"</p>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+        
+        
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    
 
 }
