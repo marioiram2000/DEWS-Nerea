@@ -4,6 +4,7 @@ package Servlets;
 import beans.ConversionCF;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,27 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ServletConversor extends HttpServlet {
 
+    private HashSet<String> paises;
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletConversor</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletConversor at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
+    @Override
+    public void init() throws ServletException {
+        super.init(); //To change body of generated methods, choose Tools | Templates.
+        paises = new HashSet<String>();
+    } 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {        
+        //System.out.print(request.getLocale().getCountry());//es_ES//en_GB
+        paises.add(request.getLocale().getCountry());
         
         ConversionCF t = null;
         
@@ -99,13 +92,12 @@ public class ServletConversor extends HttpServlet {
                 out.println("<h2>Valor en celsius:"+t.getC()+"</h2>");
                 out.println("<h2>Valor en faharenheit:"+t.getF()+"</h2>");
                 out.println("<h2><a href='conversorCF.html'>Enlace para volver al formulario</a></h2>");
+                out.println("<h3>Se han establecido conexiones desde "+paises.size()+" distintos locale´s</h3>");
                 out.println("</body>");
                 out.println("</html>");
             }
-        }
-        
+        }        
     }
-
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
