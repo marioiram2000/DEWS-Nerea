@@ -8,6 +8,18 @@
         <servlet-name>ServletFormOpinion</servlet-name>
         <servlet-class>Servlets.ServletFormOpinion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletIntroCeldas</servlet-name>
+        <servlet-class>Servlets.ServletIntroCeldas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletGuardaMatriz</servlet-name>
+        <servlet-class>Servlets.ServletGuardaMatriz</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletVisorMatrices</servlet-name>
+        <servlet-class>Servlets.ServletVisorMatrices</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletConversor</servlet-name>
         <url-pattern>/ServletConversor</url-pattern>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>ServletFormOpinion</servlet-name>
         <url-pattern>/ServletFormOpinion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletIntroCeldas</servlet-name>
+        <url-pattern>/ServletIntroCeldas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletGuardaMatriz</servlet-name>
+        <url-pattern>/ServletGuardaMatriz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletVisorMatrices</servlet-name>
+        <url-pattern>/ServletVisorMatrices</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
