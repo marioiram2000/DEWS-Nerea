@@ -24,11 +24,9 @@
                     Empresa empresa=new Empresa(nombre, beneficio,max_trab);
                     session.setAttribute("empresa",empresa);
 %>
-
                     <jsp:forward page="empresa.jsp" />
 <%
             }
-
  %>
         
         
