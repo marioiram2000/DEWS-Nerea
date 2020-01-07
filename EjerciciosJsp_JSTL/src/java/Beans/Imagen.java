@@ -16,25 +16,26 @@ public class Imagen {
     
     public String tamanioDesglosado(){
         long longitud = this.tamanio;
-        DecimalFormat df = new DecimalFormat("#.00");
-        
-        if(longitud>1024000000){
-            long gb = longitud/1024000000;
-            long mb = (longitud%1024000000)/10240000;
-            long kb = ((longitud%1024000000)%10240000)/102400;
-            long by = (((longitud%1024000000)%10240000)%102400)/1024;
-            System.out.println(this+"  : " + gb + " Gb"+ mb + " Mb"+ kb + " Kb"+ by + " bytes");
-        }else if(longitud>1024000){
-            long mb = longitud/10240000;
-            long kb = (longitud%10240000)/102400;
-            long by = ((longitud%10240000)%102400)/1024;
-            System.out.println(this+"  : "+ mb + " Mb"+ kb + " Kb"+ by + " bytes");
+        String str;
+
+        if(longitud>Math.pow(1024, 2)){
+            long mb = longitud/(long)Math.pow(1024, 2);
+            long resto = longitud%(long)Math.pow(1024, 2);
+            long kb = resto/1024;
+            resto = resto%1024;
+            long by = resto;
+            str = mb + " Mb "+ kb + " Kb "+ by + " bytes";
+            System.out.println(this.nombre+"  : " + mb + " Mb "+ kb + " Kb "+ by + " bytes");
         }else if(longitud>1024){
-                    System.out.println(this+"  : " + longitud/1024 + " Kb");
+            long kb = longitud/1024;
+            long by = longitud%1024;
+            str = kb + " Kb "+ by + " bytes";
+            System.out.println(this.nombre+"  : " + kb + " Kb "+ by + " bytes");
         }else{
-                    System.out.println(this+"  : " + longitud + " bytes");       
+            str = longitud + " bytes";
+            System.out.println(this.nombre+"  : " + longitud + " bytes");       
         }
-        return "";
+        return str;
     }
 
     public String getRuta() {
