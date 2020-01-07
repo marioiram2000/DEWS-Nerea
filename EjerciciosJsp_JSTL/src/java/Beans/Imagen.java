@@ -1,5 +1,7 @@
 package Beans;
 
+import java.text.DecimalFormat;
+
 public class Imagen {
 
     private String ruta;
@@ -13,15 +15,44 @@ public class Imagen {
     }
     
     public String tamanioDesglosado(){
-        long by = this.tamanio/1024;
-        int kb = (int)by;
-        int mb = (int)kb/1024;
+        long longitud = this.tamanio;
+        DecimalFormat df = new DecimalFormat("#.00");
         
-        by = by - (kb*1024);
-        kb = kb - (mb*1024);
-        
-        String str = mb+" Mb "+kb+" Kb "+by+" bytes";
-        return str;
+        if(longitud>1024000000){
+            long gb = longitud/1024000000;
+            long mb = (longitud%1024000000)/10240000;
+            long kb = ((longitud%1024000000)%10240000)/102400;
+            long by = (((longitud%1024000000)%10240000)%102400)/1024;
+            System.out.println(this+"  : " + gb + " Gb"+ mb + " Mb"+ kb + " Kb"+ by + " bytes");
+        }else if(longitud>1024000){
+            long mb = longitud/10240000;
+            long kb = (longitud%10240000)/102400;
+            long by = ((longitud%10240000)%102400)/1024;
+            System.out.println(this+"  : "+ mb + " Mb"+ kb + " Kb"+ by + " bytes");
+        }else if(longitud>1024){
+                    System.out.println(this+"  : " + longitud/1024 + " Kb");
+        }else{
+                    System.out.println(this+"  : " + longitud + " bytes");       
+        }
+        return "";
     }
+
+    public String getRuta() {
+        return ruta;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public long getTamanio() {
+        return tamanio;
+    }    
+
+    @Override
+    public String toString() {
+        return "Imagen{" + "ruta=" + ruta + ", nombre=" + nombre + ", tamanio=" + tamanio + '}';
+    }
+    
     
 }
