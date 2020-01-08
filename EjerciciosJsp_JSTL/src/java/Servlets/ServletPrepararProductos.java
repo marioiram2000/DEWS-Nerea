@@ -43,13 +43,13 @@ public class ServletPrepararProductos extends HttpServlet {
                 String categoria = linea.split(";")[0];
                 String producto = linea.split(";")[1];
                 if(mapa.containsKey(categoria)){
-                    mapa.get(categoria).add(producto);
+                    arl = (ArrayList<String>)mapa.get(categoria);
+                    arl.add(producto);
                 }
             }
         }
         HttpSession ses = request.getSession(true);
         ses.setAttribute("productos", mapa);
-        System.out.println("ha pasado al get");
         response.sendRedirect("compra.jsp");
     }
     
