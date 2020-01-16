@@ -1,6 +1,6 @@
 package beans;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Pedido {
     private int id;
@@ -9,6 +9,22 @@ public class Pedido {
     private int idcliente;
 
     public Pedido() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public int getIdcliente() {
+        return idcliente;
     }
     
     

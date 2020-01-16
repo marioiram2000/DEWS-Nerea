@@ -35,7 +35,7 @@ public class CarroCompra {
         while(it.hasNext()){
             Integer id = (Integer) it.next();
             LineaPedido lp = carro.get(id);
-            Item item = lp.getItem();
+            Item item = lp.getIditem();
             int cantidad = lp.getCantidad();
             double precio = item.getPrecio();
             

@@ -20,6 +20,18 @@ public class Item {
     public double getPrecio() {
         return precio;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
     
     
 }
