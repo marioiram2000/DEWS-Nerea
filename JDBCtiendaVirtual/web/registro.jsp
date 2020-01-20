@@ -3,7 +3,6 @@
     Created on : 16-ene-2020, 9:45:19
     Author     : dw2_alum4
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,5 +24,8 @@
             <input type="submit" name="registrarse" value="REGISTRARSE">
             <input type="reset" name="reset" value="Reset">
         </form>
+        <% if(request.getAttribute("error")!=null){ %>
+            <p style="color:red;"><% out.print(request.getAttribute("error")); %></p>
+        <% } %>
     </body>
 </html>

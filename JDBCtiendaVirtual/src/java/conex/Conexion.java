@@ -14,8 +14,7 @@ public class Conexion {
         Connection cn=null;
         try {
             InitialContext ctx = new InitialContext();
-            DataSource ds = (DataSource) ctx.lookup("jdbcTiendaVirtual");
-            
+            DataSource ds = (DataSource) ctx.lookup("jdbcTiendaVirtual");            
             cn = ds.getConnection();
         } catch (NamingException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);

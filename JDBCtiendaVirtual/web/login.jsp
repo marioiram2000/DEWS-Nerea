@@ -28,5 +28,8 @@
             <input type="reset" name="reset" value="Reset">
             <a href="registro.jsp">REGISTRARSE</a>            
         </form>
+        <% if(request.getAttribute("registrado")!=null){ %>
+        <p style="color:green;">Usuario registrado con exito</p>
+        <% } %>
     </body>
 </html>

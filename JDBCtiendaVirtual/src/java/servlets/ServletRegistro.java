@@ -33,11 +33,19 @@ public class ServletRegistro extends HttpServlet {
                 request.getParameter("zip"), 
                 request.getParameter("telefono"), 
                 request.getParameter("email"));
-        if(GestionClientes.guardaCliente(c)){
-            request.setAttribute("registrado", c);
-            
+        if(!GestionClientes.buscaCliente(c.getNombre())){
+            if(GestionClientes.guardaCliente(c)){            
+                request.setAttribute("registrado", c);
+                request.getRequestDispatcher("login.jsp").forward(request, response);                  
+            }else{
+                System.out.print("No se ha guardado el cliente");
+                request.setAttribute("error", "No se pudo guardar el usuario en la base de datos");
+                request.getRequestDispatcher("registro.jsp").forward(request, response); 
+            }
         }else{
-            
+            System.out.print("Nombre de usuario ya usado");
+            request.setAttribute("error", "Ese nombre de usuaio ya está siendo usado");
+            request.getRequestDispatcher("registro.jsp").forward(request, response); 
         }
         
         

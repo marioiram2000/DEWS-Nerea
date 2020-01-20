@@ -22,7 +22,7 @@ public class ServletLogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession ses = request.getSession(false);
+        HttpSession ses = request.getSession();
         ses.invalidate();
         ses = request.getSession(true);
         
