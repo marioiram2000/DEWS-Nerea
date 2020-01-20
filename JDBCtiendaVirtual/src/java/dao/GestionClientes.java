@@ -79,7 +79,7 @@ public class GestionClientes {
         Conexion.devolverConexion(cn);
     }
 
-    public boolean guardaCliente(Cliente c){       
+    public static boolean guardaCliente(Cliente c){       
         try {                    
             psInsertCliente.setInt(1,c.getId());
             psInsertCliente.setString(2, c.getNombre());
@@ -94,8 +94,7 @@ public class GestionClientes {
                 return true;
             }
         } catch (SQLException ex) {
-                        System.err.println("Gestion clientes -> guardaCliente(Cliente c)");
-
+            System.err.println("Gestion clientes -> guardaCliente(Cliente c)");
         }
         return false;
     }

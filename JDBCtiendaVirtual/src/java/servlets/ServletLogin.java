@@ -40,15 +40,13 @@ public class ServletLogin extends HttpServlet {
             
             request.getRequestDispatcher("tienda.jsp").forward(request, response);            
         }else{
-            if(GestionClientes.buscaCliente(user)){
-                System.out.println("error en password");
-                request.setAttribute("error", "Error en la contraseña");
-                request.getRequestDispatcher("login.jsp").forward(request, response);            
+            if(GestionClientes.buscaCliente(user)){   
+                request.setAttribute("error", "Contraseña incorrecta");                      
             }else{
-                System.out.println("error user");
-                request.setAttribute("error", "Error en el usuario");
-                request.getRequestDispatcher("login.jsp").forward(request, response);         
+                request.setAttribute("error", "Usuario incorrecto");                    
             }
+            //System.out.println(request.getAttribute("error"));            
+            request.getRequestDispatcher("login.jsp").forward(request, response);      
         }
     }
 }

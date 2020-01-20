@@ -78,6 +78,11 @@ public class Cliente {
     public String getEmail() {
         return email;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", password=" + password + ", domicilio=" + domicilio + ", codigopostal=" + codigopostal + ", telefono=" + telefono + ", email=" + email + '}';
+    }
     
     
 }

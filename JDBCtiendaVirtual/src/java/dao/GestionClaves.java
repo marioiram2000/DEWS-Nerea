@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class GestionClaves {
     
-    public int siguienteId(Connection cn, String tabla){
+    public static int siguienteId(Connection cn, String tabla){
         try {
             int id = 1;
             Statement st = cn.createStatement();

@@ -12,6 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <% if(request.getAttribute("error")!=null){ %>
+            <script type="text/javascript">
+                alert(" <% out.print(request.getAttribute("error")); %>")              
+            </script>
+        <% } %>
+        
         <h1>LOGIN</h1>
         <form action="ServletLogin" method="POST">
             <table>
@@ -21,7 +27,6 @@
             <input type="submit" name="login" value="Login">
             <input type="reset" name="reset" value="Reset">
             <a href="registro.jsp">REGISTRARSE</a>            
-        </form>     
-        <p>${param.error}</p> 
+        </form>
     </body>
 </html>

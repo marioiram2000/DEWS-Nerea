@@ -13,8 +13,8 @@
     </head>
     <body>
         <h1>LOGIN</h1>
-        <form action="ServletLogin" method="POST">
-            <table>
+        <form action="ServletRegistro" method="POST">
+            <table border="1">
                 <tr><th>Usuario</th><td><input type="text" name="username" id="username"></td></tr>
                 <tr><th>Contraseña</th><td><input type="password" name="password" id="password"</td></tr>
                 <tr><th>Domicilio</th><td><input type="text" name="domicilio" id="domicilio"></td></tr>
