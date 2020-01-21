@@ -23,22 +23,27 @@ public class ServletAgregarLineaPedido extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession ses = request.getSession();
-        CarroCompra carroCompra = (CarroCompra) ses.getAttribute("carroCompra");
-        if(carroCompra==null){
-            carroCompra = new CarroCompra();
+        if(request.getParameter("cantidad")!=null && !request.getParameter("cantidad").equals("") && Integer.parseInt(request.getParameter("cantidad"))>0){
+            HttpSession ses = request.getSession();
+            CarroCompra carroCompra = (CarroCompra) ses.getAttribute("carroCompra");
+            if(carroCompra==null){
+                carroCompra = new CarroCompra();
+            }
+
+            LineaPedido lp = new LineaPedido();
+
+            Item it = GestionPedidos.buscaItemPoirId(Integer.parseInt(request.getParameter("id")));
+            lp.setItem(it);
+            lp.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
+         
+            carroCompra.aniadeLinea(lp);
+            ses.setAttribute("carroCompra", carroCompra);
         }
         
-        LineaPedido lp = new LineaPedido();
-        
-        Item it = GestionPedidos.buscaItemPoirId(Integer.parseInt(request.getParameter("id")));
-        lp.setIditem(it);
-        lp.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
-        /*
-        lp.setIdpedido(0);
-        lp.setId(0);
-        */
-        carroCompra.aniadeLinea(lp);
+        request.getRequestDispatcher("tienda.jsp").forward(request, response); 
     }
 }
+/*
+lp.setPedido(0);
+lp.setId(0);
+*/

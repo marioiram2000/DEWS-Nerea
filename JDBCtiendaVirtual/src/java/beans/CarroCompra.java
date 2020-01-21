@@ -7,11 +7,13 @@ import java.util.Iterator;
 
 public class CarroCompra {
 
-    HashMap<Integer, LineaPedido> carro = new HashMap();
+    public HashMap<Integer, LineaPedido> carro = new HashMap();
     
     public void aniadeLinea(LineaPedido l){
         if(carro.containsKey(l.getId())){
-            carro.get(l.getId()).setCantidad((l.getCantidad()+1));
+            LineaPedido lp = carro.get(l.getId());
+            lp.setCantidad((l.getCantidad()+lp.getCantidad()));
+            carro.put(l.getId(), lp);
         }else{
             carro.put(l.getId(), l);
         }
@@ -54,6 +56,11 @@ public class CarroCompra {
     
     public boolean vacio(){
         return carro.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return "CarroCompra{" + "carro=" + carro + '}';
     }
     
 }

@@ -20,14 +20,15 @@
         <table border="1">
             <tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Cantidad</th><th>Añadir</th></tr>
             <!--<c:out value="${sessionScope.mapaItems}"/>-->
+            <c:out value="${sessionScope.carroCompra}"/>
             <c:forEach items="${sessionScope.mapaItems}" var="it">
                 <tr>
                     <form action="ServletAgregarLineaPedido" method="POST">
-                        <td style="padding:5px">${it.key}<input type="hidden" value="${it.key}" name="id" id="id"></td>
-                        <td style="padding:5px">${it.value.nombre}<input type="hidden" value="${it.value.nombre}" name="nombre" id="nombre"></td>
-                        <td style="padding:5px">${it.value.precio}<input type="hidden" value="${it.value.precio}" name="precio" id="precio"></td>
-                        <td style="padding:5px"><input type="number" name="cantidad" id="cantidad"/></td>
-                        <td style="padding:5px"><input type="submit" name="aniadir" id="aniadir" value="Añadir al carro"/></td>
+                        <td style="padding:5px">${it.key}<input type="hidden" value="${it.key}" name="id"></td>
+                        <td style="padding:5px">${it.value.nombre}<input type="hidden" value="${it.value.nombre}" name="nombre" ></td>
+                        <td style="padding:5px">${it.value.precio}<input type="hidden" value="${it.value.precio}" name="precio" ></td>
+                        <td style="padding:5px"><input type="number" name="cantidad"/></td>
+                        <td style="padding:5px"><input type="submit" name="aniadir" value="Añadir al carro"/></td>
                     </form>
                 </tr>
             </c:forEach>

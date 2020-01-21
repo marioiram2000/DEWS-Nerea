@@ -48,7 +48,7 @@ public class GestionPedidos {
                         + "WHERE id="+iditem;
             ResultSet rs = st.executeQuery(sql);
             if(rs.next()){
-                item = new Item(rs.getInt("id"), rs.getString("nombre"), rs.getInt("id"), rs.getString("nombre"));
+                item = new Item(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("precio"), rs.getString("nombre"));
             }
         } catch (SQLException ex) {
             System.err.println("GestionPedidos.buscaItemPoirId()");

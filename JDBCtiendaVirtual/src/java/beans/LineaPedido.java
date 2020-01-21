@@ -39,8 +39,13 @@ public class LineaPedido {
         this.id = id;
     }
 
-    public void setIditem(Item item) {
+    public void setItem(Item item) {
         this.item = item;
+    }
+
+    @Override
+    public String toString() {
+        return "LineaPedido{" + "id=" + id + ", cantidad=" + cantidad + ", pedido=" + pedido + ", item=" + item + '}';
     }
     
     

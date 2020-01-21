@@ -16,6 +16,14 @@
         <servlet-name>ServletAgregarLineaPedido</servlet-name>
         <servlet-class>servlets.ServletAgregarLineaPedido</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletVaciarCesta</servlet-name>
+        <servlet-class>servlets.ServletVaciarCesta</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletUpdateLineaPedido</servlet-name>
+        <servlet-class>servlets.ServletUpdateLineaPedido</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/ServletLogin</url-pattern>
@@ -27,6 +35,14 @@
     <servlet-mapping>
         <servlet-name>ServletAgregarLineaPedido</servlet-name>
         <url-pattern>/ServletAgregarLineaPedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletVaciarCesta</servlet-name>
+        <url-pattern>/ServletVaciarCesta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletUpdateLineaPedido</servlet-name>
+        <url-pattern>/ServletUpdateLineaPedido</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
