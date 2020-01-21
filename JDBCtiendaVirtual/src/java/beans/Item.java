@@ -32,6 +32,9 @@ public class Item {
     public String getImagen() {
         return imagen;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Item{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", imagen=" + imagen + '}';
+    }
 }

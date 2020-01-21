@@ -5,8 +5,8 @@ public class LineaPedido {
     
     private int id;
     private int cantidad;
-    private Pedido idpedido;
-    private Item iditem;
+    private Pedido pedido;
+    private Item item;
 
     public LineaPedido() {
     }
@@ -24,11 +24,23 @@ public class LineaPedido {
     }
 
     public Pedido getPedido() {
-        return idpedido;
+        return pedido;
     }
 
-    public Item getIditem() {
-        return iditem;
+    public Item getItem() {
+        return item;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setIditem(Item item) {
+        this.item = item;
     }
     
     

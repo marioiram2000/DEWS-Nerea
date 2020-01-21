@@ -141,4 +141,24 @@ public class GestionClientes {
         }        
         return false;
     }
+    
+    public static int cuantosClientes(){
+        Connection cn = Conexion.conexion();
+        try {            
+            Statement st = cn.createStatement();
+            String sql = "SELECT COUNT(id) as cantidad "
+                        + "FROM clientes";
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){
+                int cant = rs.getInt("cantidad");
+                Conexion.devolverConexion(cn);
+                System.out.println("----Clientes en la base de datos: "+cant+"----");
+                return cant;
+            }           
+        } catch (SQLException ex) {
+            System.err.println("Gestion clientes -> cuantosClientes()");
+        }   
+        Conexion.devolverConexion(cn);
+        return -1;
+    }
 }

@@ -24,6 +24,7 @@
             <input type="submit" name="registrarse" value="REGISTRARSE">
             <input type="reset" name="reset" value="Reset">
         </form>
+        <br><a href="login.jsp">INICIAR SESION</a> 
         <% if(request.getAttribute("error")!=null){ %>
             <p style="color:red;"><% out.print(request.getAttribute("error")); %></p>
         <% } %>

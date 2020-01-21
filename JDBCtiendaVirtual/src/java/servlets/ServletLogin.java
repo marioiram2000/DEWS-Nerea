@@ -1,10 +1,12 @@
 package servlets;
 
 import beans.Cliente;
+import beans.Item;
 import dao.GestionClientes;
 import dao.GestionPedidos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +38,7 @@ public class ServletLogin extends HttpServlet {
         
         if(c!=null){
             ses.setAttribute("cliente", c);
-            ses.setAttribute("items", GestionPedidos.todosItems());
+            ses.setAttribute("mapaItems", GestionPedidos.todosItems());
             
             request.getRequestDispatcher("tienda.jsp").forward(request, response);            
         }else{

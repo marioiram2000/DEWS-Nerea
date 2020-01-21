@@ -17,32 +17,34 @@ import java.util.logging.Logger;
 
 public class GestionPedidos {
     
-    public static Map todosItems(){
+    public static HashMap todosItems(){
         Connection cn = Conexion.conexion();
         HashMap<Integer, Item> items = new HashMap<>();
         try {
             Statement st = cn.createStatement();
-            String sql = "SELECT id, nombre, precio, imagen"
+            String sql = "SELECT id, nombre, precio, imagen "
                         + "FROM items";
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
-                Item it = new Item(rs.getInt("id"), rs.getString("nombre"), rs.getInt("id"), rs.getString("nombre"));
+                Item it = new Item(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("precio"), rs.getString("nombre"));
                 items.put(rs.getInt("id"), it);
+                
             }
         } catch (SQLException ex) {
             System.err.println("GestionPedidos.todosItems()");
         }     
         Conexion.devolverConexion(cn);
+        //System.out.println(items);
         return items;     
     }
     
-    public Item buscaItemPoirId(int iditem){
+    public static Item buscaItemPoirId(int iditem){
         Connection cn = Conexion.conexion();
         Item item = null;
         try {
             Statement st = cn.createStatement();
-            String sql = "SELECT id, nombre, precio, imagen"
-                        + "FROM items"
+            String sql = "SELECT id, nombre, precio, imagen "
+                        + "FROM items "
                         + "WHERE id="+iditem;
             ResultSet rs = st.executeQuery(sql);
             if(rs.next()){
@@ -101,7 +103,7 @@ public class GestionPedidos {
             psInsertLineaPedido.setInt(1, l.getId());
             psInsertLineaPedido.setInt(2, l.getCantidad());
             psInsertLineaPedido.setInt(3, l.getPedido().getId());
-            psInsertLineaPedido.setInt(4, l.getIditem().getId());
+            psInsertLineaPedido.setInt(4, l.getItem().getId());
             
             psInsertLineaPedido.executeUpdate();
         } catch (SQLException ex) {
