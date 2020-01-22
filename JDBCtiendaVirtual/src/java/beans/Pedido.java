@@ -1,6 +1,7 @@
 package beans;
 
 import java.sql.Date;
+import java.util.HashSet;
 
 public class Pedido {
     private int id;
@@ -8,9 +9,19 @@ public class Pedido {
     private Date fecha;
     private int idcliente;
 
+    HashSet<LineaPedido> lineas;
+    
     public Pedido() {
     }
 
+    public Pedido(int id, double total, Date fecha, int idcliente, HashSet<LineaPedido> lineas) {
+        this.id = id;
+        this.total = total;
+        this.fecha = fecha;
+        this.idcliente = idcliente;
+        this.lineas = lineas;
+    }
+    
     public int getId() {
         return id;
     }

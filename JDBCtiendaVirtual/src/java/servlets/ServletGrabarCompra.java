@@ -41,7 +41,7 @@ public class ServletGrabarCompra extends HttpServlet {
         }
         
         Cliente cliente = (Cliente) ses.getAttribute("cliente");        
-        System.out.print("---------------------------------------"+cliente);
+        //System.out.print("---------------------------------------"+cliente);
         int idCliente = cliente.getId();        
         String nombre = cliente.getNombre();        
         String password = cliente.getPassword();
@@ -64,14 +64,14 @@ public class ServletGrabarCompra extends HttpServlet {
         p.setFecha(sateSQL);
         p.setTotal(carro.total());
         GestionPedidos.guardaPedido(p);
-        System.out.print("-------------------------------------PEDIDO: "+p);
+        //System.out.print("-------------------------------------PEDIDO: "+p);
         
         Collection lineas = carro.getLineasPedido();
         for (Iterator iterator = lineas.iterator(); iterator.hasNext();) {
             LineaPedido linea = (LineaPedido)iterator.next();
             linea.setId(GestionClaves.siguienteId(cn, "LineasPedido"));
             linea.setPedido(p);
-            System.out.print("-------------------------------------LINEA: "+linea);
+            //System.out.print("-------------------------------------LINEA: "+linea);
             GestionPedidos.guardaLineaPedido(linea);
         }
         

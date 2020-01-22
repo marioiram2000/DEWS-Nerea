@@ -11,6 +11,13 @@ public class LineaPedido {
     public LineaPedido() {
     }
 
+    public LineaPedido(int id, int cantidad, Pedido pedido, Item item) {
+        this.id = id;
+        this.cantidad = cantidad;
+        this.pedido = pedido;
+        this.item = item;
+    }
+    
     public int getId() {
         return id;
     }

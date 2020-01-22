@@ -1,6 +1,7 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class Cliente implements Serializable{
 
@@ -11,6 +12,8 @@ public class Cliente implements Serializable{
     private String codigopostal;
     private String telefono;
     private String email;
+    
+    Map<Integer, Pedido> pedidos;
     
     public Cliente() {
     }
@@ -53,6 +56,10 @@ public class Cliente implements Serializable{
         this.email = email;
     }
 
+    public void setPedidos(Map<Integer, Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
+    
     public int getId() {
         return id;
     }
@@ -81,10 +88,16 @@ public class Cliente implements Serializable{
         return email;
     }
 
+    public Map<Integer, Pedido> getPedidos() {
+        return pedidos;
+    }
+
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", password=" + password + ", domicilio=" + domicilio + ", codigopostal=" + codigopostal + ", telefono=" + telefono + ", email=" + email + '}';
+        return "Cliente{" + "id=" + id + ", nombre=" + nombre + ", password=" + password + ", domicilio=" + domicilio + ", codigopostal=" + codigopostal + ", telefono=" + telefono + ", email=" + email + ", pedidos=" + pedidos + '}';
     }
+
+    
     
     
 }

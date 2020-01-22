@@ -38,7 +38,7 @@
         <div>
             <form action="listar_cesta.jsp" method="POST"><input type="submit" value="Ver cesta"></form>
             <form action="pedir.jsp" method="POST"><input type="submit" value="Hacer pedido"></form>
-            <form action="ServletListaPedidos" method="POST"><input type="submit" value="Mis pedidos"></form>
+            <form action="ServletPedidosClientes" method="POST"><input type="submit" value="Mis pedidos"></form>
         </div>        
     </body>
 </html>

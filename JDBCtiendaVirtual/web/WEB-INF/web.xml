@@ -28,6 +28,10 @@
         <servlet-name>ServletGrabarCompra</servlet-name>
         <servlet-class>servlets.ServletGrabarCompra</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletPedidosClientes</servlet-name>
+        <servlet-class>servlets.ServletPedidosClientes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/ServletLogin</url-pattern>
@@ -51,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>ServletGrabarCompra</servlet-name>
         <url-pattern>/ServletGrabarCompra</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletPedidosClientes</servlet-name>
+        <url-pattern>/ServletPedidosClientes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

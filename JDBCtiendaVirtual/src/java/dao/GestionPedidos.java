@@ -1,5 +1,6 @@
 package dao;
 
+import beans.Cliente;
 import beans.Item;
 import beans.LineaPedido;
 import beans.Pedido;
@@ -11,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -112,5 +115,47 @@ public class GestionPedidos {
             System.err.println("GestionPedidos.guardaLineaPedido(LineaPedido l)");
         }
         return;
+    }
+    
+    public static Map<Integer, Pedido> todosPedidos(Cliente c){
+        
+        Connection cn = Conexion.conexion();
+        Map<Integer, Pedido> pedidos = new HashMap<>();
+        try {
+            Statement st = cn.createStatement();
+            String sql = "SELECT id, total, fecha "
+                        + "FROM pedidos "
+                        + "WHERE idcliente="+c.getId();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                HashSet<LineaPedido> lineas = new HashSet<>();
+                
+                String consulta = "SELECT id, cantidad, iditem "
+                                + "FROM lineaspedido WHERE idpedido="+rs.getInt("id");
+                
+                Statement stat = cn.createStatement();
+                ResultSet result = stat.executeQuery(consulta);
+                while(result.next()){
+                    LineaPedido lp = new LineaPedido(result.getInt("id"), result.getInt("cantidad"), null, GestionPedidos.buscaItemPoirId(result.getInt("iditem")));
+                    lineas.add(lp);
+                }
+                
+                Pedido p = new Pedido(rs.getInt("id"), rs.getDouble("total"), rs.getDate("fecha"), c.getId(), lineas);
+                
+                for (Iterator<LineaPedido> iterator = lineas.iterator(); iterator.hasNext();) {
+                    LineaPedido linea = iterator.next();
+                    linea.setPedido(p);
+                }
+                pedidos.put(p.getId(), p);
+                
+            }
+        } catch (SQLException ex) {
+            System.err.println("GestionPedidos.todosItems()->"+ex);
+        } 
+        
+        
+        Conexion.devolverConexion(cn);
+        //System.out.println(items);
+        return pedidos; 
     }
 }
