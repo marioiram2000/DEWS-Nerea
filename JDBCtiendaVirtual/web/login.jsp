@@ -21,7 +21,7 @@
         <h1>LOGIN</h1>
         <form action="ServletLogin" method="POST">
             <table>
-                <tr><td>Usuario</td><td><input type="text" name="username" id="username"></td></tr>
+                <tr><td>Usuario</td><td><input type="text" name="username" id="username" autofocus></td></tr>
                 <tr><td>Contraseña</td><td><input type="password" name="password" id="password"</td></tr>
             </table>
             <input type="submit" name="login" value="Login">

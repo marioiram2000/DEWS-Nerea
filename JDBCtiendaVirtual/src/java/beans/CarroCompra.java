@@ -10,12 +10,20 @@ public class CarroCompra {
     public HashMap<Integer, LineaPedido> carro = new HashMap();
     
     public void aniadeLinea(LineaPedido l){
-        if(carro.containsKey(l.getId())){
-            LineaPedido lp = carro.get(l.getId());
+        boolean control = false;
+        for(HashMap.Entry <Integer, LineaPedido> linea : this.carro.entrySet()){
+            Integer idItem = linea.getKey();            
+            if(idItem == l.getItem().getId()){
+                control = true;
+            }
+        }
+        
+        if(control){
+            LineaPedido lp = carro.get(l.getItem().getId());
             lp.setCantidad((l.getCantidad()+lp.getCantidad()));
-            carro.put(l.getId(), lp);
+            carro.put(l.getItem().getId(), lp);
         }else{
-            carro.put(l.getId(), l);
+            carro.put(l.getItem().getId(), l);
         }
     }
     

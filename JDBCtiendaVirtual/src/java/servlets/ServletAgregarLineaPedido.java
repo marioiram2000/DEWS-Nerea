@@ -38,8 +38,7 @@ public class ServletAgregarLineaPedido extends HttpServlet {
          
             carroCompra.aniadeLinea(lp);
             ses.setAttribute("carroCompra", carroCompra);
-        }
-        
+        }        
         request.getRequestDispatcher("tienda.jsp").forward(request, response); 
     }
 }

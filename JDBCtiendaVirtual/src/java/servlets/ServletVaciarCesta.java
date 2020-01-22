@@ -12,14 +12,15 @@ public class ServletVaciarCesta extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession ses = request.getSession();
-        ses.removeAttribute("carroCompra");
-        response.sendRedirect("listar_cesta.jsp");
+       response.sendError(403);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendError(403);
+        
+        HttpSession ses = request.getSession();
+        ses.removeAttribute("carroCompra");
+        request.getRequestDispatcher("listar_cesta.jsp").forward(request, response);
     }
 
 }

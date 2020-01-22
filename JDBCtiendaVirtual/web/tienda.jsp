@@ -19,8 +19,10 @@
         <h1>Tienda</h1>
         <table border="1">
             <tr><th>ID</th><th>Nombre</th><th>Precio</th><th>Cantidad</th><th>Añadir</th></tr>
-            <!--<c:out value="${sessionScope.mapaItems}"/>-->
-            <c:out value="${sessionScope.carroCompra}"/>
+            <c:out value="MAPA--> ${sessionScope.mapaItems}"/>
+            <br><br><br>
+            <c:out value="CARRO-->${sessionScope.carroCompra}"/>
+            <br>
             <c:forEach items="${sessionScope.mapaItems}" var="it">
                 <tr>
                     <form action="ServletAgregarLineaPedido" method="POST">
@@ -34,9 +36,9 @@
             </c:forEach>
         </table>
         <div>
-            <a href="listar_cesta.jsp"><button>Ver cesta</button></a>
-            <a href="pedir.jsp"><button>Hacer pedido</button></a>
-            <a href="ServletListaPedidos"><button>Mis pedidos</button></a>
+            <form action="listar_cesta.jsp" method="POST"><input type="submit" value="Ver cesta"></form>
+            <form action="pedir.jsp" method="POST"><input type="submit" value="Hacer pedido"></form>
+            <form action="ServletListaPedidos" method="POST"><input type="submit" value="Mis pedidos"></form>
         </div>        
     </body>
 </html>
