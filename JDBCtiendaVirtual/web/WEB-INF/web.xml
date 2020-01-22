@@ -24,6 +24,10 @@
         <servlet-name>ServletUpdateLineaPedido</servlet-name>
         <servlet-class>servlets.ServletUpdateLineaPedido</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletGrabarCompra</servlet-name>
+        <servlet-class>servlets.ServletGrabarCompra</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletLogin</servlet-name>
         <url-pattern>/ServletLogin</url-pattern>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>ServletUpdateLineaPedido</servlet-name>
         <url-pattern>/ServletUpdateLineaPedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletGrabarCompra</servlet-name>
+        <url-pattern>/ServletGrabarCompra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
