@@ -24,20 +24,20 @@ public class ServletUpdateLineaPedido extends HttpServlet {
         HttpSession ses = request.getSession();
         CarroCompra carroCompra = (CarroCompra) ses.getAttribute("carroCompra");
         int idItem = Integer.parseInt(request.getParameter("idItem"));
-        System.out.println("------------------------------------------------------"+request.getParameter("idItem")+"--------------------------------------------------------------");
         if(request.getParameter("borrar")!=null){            
             carroCompra.borrarLinea(idItem);
             ses.setAttribute("carroCompra", carroCompra);
-            
+            request.setAttribute("cambioCarroCompra", "Item borrado");                      
         }else if(request.getParameter("cambiar")!=null){            
             LineaPedido lp = carroCompra.getLineaPedido(idItem);
    
             if(Integer.parseInt(request.getParameter("cantidad"))>0){
                 lp.setCantidad(Integer.parseInt(request.getParameter("cantidad")));
-                
+                request.setAttribute("cambioCarroCompra", "Cantidad actualizada");     
             }else{
                 carroCompra.borrarLinea(idItem);
                 ses.setAttribute("carroCompra", carroCompra);
+                request.setAttribute("cambioCarroCompra", "Item borrado");        
             }
         }else{
             response.sendError(403);

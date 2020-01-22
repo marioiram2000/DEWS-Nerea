@@ -34,5 +34,8 @@
             <form action="tienda.jsp" method="POST"><input type="submit" value="CONTINUAR LA COMPRA" name="continuar"/></form>
             <form action="pedir.jsp" method="POST"><input type="submit" value="HACER PEDIDO" name="pedido"/></form>
         </div> 
+                <c:if test="${requestScope.cambioCarroCompra != null}">
+                    <p>${requestScope.cambioCarroCompra}</p>
+                </c:if>
     </body>
 </html>
