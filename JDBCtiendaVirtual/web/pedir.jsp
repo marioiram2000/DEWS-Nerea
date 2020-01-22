@@ -16,7 +16,7 @@
         <h1>PEDIDO</h1>
         <h2>TUS DATOS</h2>
         <!--<c:out value="${sessionScope.cliente}"/>-->
-        <form action="ServletGrabarCompra">
+        <form action="ServletGrabarCompra" method="POST">
             <table border="1">
                 <tr>
                     <th>Nombre</th><td><input type="text" name="nombre"  value="${sessionScope.cliente.getNombre()}" id="nombre" disabled="true"/></td>

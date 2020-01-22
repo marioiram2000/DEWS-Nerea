@@ -26,7 +26,7 @@ public class GestionPedidos {
                         + "FROM items";
             ResultSet rs = st.executeQuery(sql);
             while(rs.next()){
-                Item it = new Item(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("precio"), rs.getString("nombre"));
+                Item it = new Item(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("precio"), "");
                 items.put(rs.getInt("id"), it);
                 
             }
@@ -48,7 +48,7 @@ public class GestionPedidos {
                         + "WHERE id="+iditem;
             ResultSet rs = st.executeQuery(sql);
             if(rs.next()){
-                item = new Item(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("precio"), rs.getString("nombre"));
+                item = new Item(rs.getInt("id"), rs.getString("nombre"), rs.getDouble("precio"), "");
             }
         } catch (SQLException ex) {
             System.err.println("GestionPedidos.buscaItemPoirId()");
@@ -59,7 +59,7 @@ public class GestionPedidos {
     }
     
     
-    private static String insertPedido = "INSERT into pedidos VALUES (?,?,?,?)";
+    private static String insertPedido = "INSERT INTO pedidos (id, total, fecha, idcliente) VALUES (?,?,?,?)";
     private static PreparedStatement psInsertPedido;
     static{
         Connection cn = Conexion.conexion();
@@ -71,7 +71,7 @@ public class GestionPedidos {
         Conexion.devolverConexion(cn);
     }
     
-    public void guardaPediddo(Pedido p){
+    public static void guardaPedido(Pedido p){
         try {
             psInsertPedido.setInt(1, p.getId());
             psInsertPedido.setDouble(2, p.getTotal());
@@ -80,13 +80,13 @@ public class GestionPedidos {
             
             psInsertPedido.executeUpdate();
         } catch (SQLException ex) {
-            System.err.println("GestionPedidos.guardaPediddo(Pedido p)");
+            System.err.println("GestionPedidos.guardaPedido(Pedido p)");
         }        
         return;
     }
     
     
-    private static String insertLineaPedido = "INSERT into lineaspedido VALUES (?,?,?,?)";
+    private static String insertLineaPedido = "INSERT into lineaspedido (id, cantidad, idpedido, iditem) VALUES (?,?,?,?)";
     private static PreparedStatement psInsertLineaPedido;
     static{
         Connection cn = Conexion.conexion();
@@ -98,8 +98,10 @@ public class GestionPedidos {
         Conexion.devolverConexion(cn);
     }
     
-    public void guardaLineaPediddo(LineaPedido l){
+    public static void guardaLineaPedido(LineaPedido l){
+        //System.out.print(l);
         try {
+            System.out.print(psInsertLineaPedido);
             psInsertLineaPedido.setInt(1, l.getId());
             psInsertLineaPedido.setInt(2, l.getCantidad());
             psInsertLineaPedido.setInt(3, l.getPedido().getId());
@@ -107,8 +109,8 @@ public class GestionPedidos {
             
             psInsertLineaPedido.executeUpdate();
         } catch (SQLException ex) {
-            System.err.println("GestionPedidos.guardaLineaPediddo(LineaPedido p)");
-        }        
+            System.err.println("GestionPedidos.guardaLineaPedido(LineaPedido l)");
+        }
         return;
     }
 }

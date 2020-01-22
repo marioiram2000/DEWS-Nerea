@@ -26,6 +26,27 @@ public class Pedido {
     public int getIdcliente() {
         return idcliente;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setIdcliente(int idcliente) {
+        this.idcliente = idcliente;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "id=" + id + ", total=" + total + ", fecha=" + fecha + ", idcliente=" + idcliente + '}';
+    }
     
     
 }

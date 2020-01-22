@@ -114,7 +114,7 @@ public class GestionClientes {
         }
         Conexion.devolverConexion(cn);
     }
-    public boolean actualizaCliene(Cliente c){
+    public static boolean actualizaCliene(Cliente c){
         try {        
             int id = c.getId();
             String nombre = c.getNombre();
