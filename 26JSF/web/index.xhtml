@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Nombre" />
+                <h:inputText value="#{turista.nombre}" />
+                
+                
+                <h:outputLabel value="Sexo" />
+                <h:selectOneMenu value="#{turista.sexo}">                    
+                    <f:selectItem itemLabel="Hombre" itemValue="HOMBRE" />
+                    <f:selectItem itemLabel="Mujer" itemValue="MUJER" />
+                    <f:selectItem itemLabel="Hermafrodita" itemValue="HERMAFRODITA" />
+                </h:selectOneMenu>
+                
+                
+                <h:outputLabel value="Paises visitados" />                    
+                <h:selectManyCheckbox value="#{turista.paises}" >                        
+                    <f:selectItems value="#{turista.listaPaises}"  var="pais"
+                                   itemLabel="#{pais.toString()}"
+                                   itemValue="#{pais.id}"
+                                   
+                                   />                        
+                </h:selectManyCheckbox>                    
+               
+                
+                <h:commandButton value="GRABAR" action="#{turista.grabar()}" />
+                
+            </h:panelGrid>
+            
+            
+            
+            
+        </h:form>
+    </h:body>
+</html>
+

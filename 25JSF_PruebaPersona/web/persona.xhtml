@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputText value="Nombre"/>
+                <h:inputText value="#{persona.nombre}" />
+                <h:outputText value="Edad"/>
+                <h:inputText value="#{persona.edad}" />          
+                
+            </h:panelGrid>
+            <h:commandButton value="Guardar" action="#{persona.examinar()}" /> 
+            <h:commandLink value="Cumplir año" action="#{persona.cumplirAnio()}"
+                           rendered="#{persona.edad lt 150}"
+                           />
+        </h:form>
+        
+        <h:form>
+            <h:inputText value="#{persona.amigo}" />
+            <h:commandButton value="Añadir amigo" action="#{persona.aniadeAmigo()}" />
+        </h:form>
+        
+        <h:outputLabel value="#{persona.amigos}" rendered="#{persona.amigos.size()>0}" />
+        
+        <h:dataTable value="#{persona.amigos}" var="amigo" rendered="#{persona.amigos.size()>0}">        
+            <h:column >
+                <f:facet name="header" >
+                    NOMBRE AMIGO
+                </f:facet>                
+                <h:outputLabel value="#{amigo.nombre}" />
+            </h:column>
+        
+            <h:column>
+                <f:facet name="header" >
+                    GRADO AMISTAD
+                </f:facet>
+                <h:outputLabel value="#{amigo.amistad}" />
+            </h:column>  
+        
+        
+        </h:dataTable>
+        
+    </h:body>
+</html>
+
