@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>            
+            <h:panelGrid columns="3">
+                <h:outputLabel value="Elige bus" />
+                <h:selectOneMenu value="#{rutas.busSelec}" >
+                
+                    <f:selectItems value="#{rutas.buses}" var="bus"
+                                   itemLabel="#{bus.id_placa} - #{bus.capacidad}" 
+                                   itemValue="#{bus.id_placa}"  />
+                
+                 </h:selectOneMenu>
+                 <h:commandButton value="Seleccionar" action="#{rutas.cargarRutas()}" />                
+            </h:panelGrid>            
+        </h:form>
+        
+        <h:outputLabel value="Viendo rutas de #{rutas.busSelec}" 
+                       rendered="#{rutas.busSelec!=null}" />
+        
+        <h:form>
+        <h:dataTable value="#{rutas.rutas}" var="ruta" 
+                     rendered="#{rutas.busSelec!=null and rutas.rutas.size() >0}">
+        
+            <h:column>
+                <f:facet name="header">
+                    ID
+                </f:facet>                
+                <h:outputLabel value="#{ruta.id_ruta}" />
+            </h:column>
+            
+             <h:column>
+                <f:facet name="header">
+                    ORIGEN
+                </f:facet>                
+                <h:outputLabel value="#{ruta.ciudadOrigen}" rendered="#{!ruta.editando}" />
+                <h:inputText value="#{ruta.ciudadOrigen}" rendered="#{ruta.editando}" />
+            </h:column>
+        
+        
+             <h:column>
+                <f:facet name="header">
+                    ORIGEN
+                </f:facet>                
+                <h:outputLabel value="#{ruta.ciudadDestino}" rendered="#{!ruta.editando}" />
+                <h:inputText value="#{ruta.ciudadDestino}" rendered="#{ruta.editando}" />
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    SALIDA
+                </f:facet>                
+                <h:outputLabel value="#{ruta.horaSalida}" >
+                    <f:convertDateTime pattern="dd-MM-yyyy hh:mm" timeZone="GMT+2" />
+                </h:outputLabel>                    
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    TARIFA
+                </f:facet>                
+                <h:outputLabel value="#{ruta.tarifa} €" />                                  
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">
+                    SUBIR TARIFA
+                </f:facet>                
+                <h:commandLink value="Subir tarifa" action="#{rutas.subirTarifa(ruta)}" />                              
+            </h:column>
+            
+            
+            <h:column>
+                <f:facet name="header">
+                    EDITAR
+                </f:facet>                
+                <h:commandLink value="Editar" rendered="#{!ruta.editando}"  >
+                    <f:setPropertyActionListener target="#{ruta.editando}" value="true" />                
+                </h:commandLink>      
+                
+                <h:commandLink value="Guardar" rendered="#{ruta.editando}" action="#{rutas.guardarRuta(ruta)}" >   
+                    <f:setPropertyActionListener target="#{ruta.editando}" value="false" />                
+                </h:commandLink>      
+            </h:column>
+            
+        
+        </h:dataTable>
+        </h:form>
+        
+        
+    </h:body>
+</html>
+
