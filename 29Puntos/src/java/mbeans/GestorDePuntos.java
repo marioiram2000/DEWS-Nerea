@@ -44,11 +44,9 @@ public class GestorDePuntos {
     }
     
     public String comprobarResul(){            
-        if(resul==calcularDistancia()){
-            
+        if(resul == calcularDistancia()){            
             acierto=true;
-        }else{
-            
+        }else{            
             acierto=false;
         }
         
