@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>            
+            <h:outputLabel value="Elige un punto " />
+            <h:selectOneMenu value="#{gestorDePuntos.punto}" >                
+
+                <f:selectItems value="#{gestorDePuntos.puntos}" var="punto" itemLabel="#{punto}" itemValue="#{punto}"/>
+
+            </h:selectOneMenu>
+            <h:commandButton value="Seleccionar" action="#{gestorDePuntos.sacarPunto()}" />            
+        </h:form>        
+        
+        <h:panelGrid rendered="#{gestorDePuntos.puntoAleatorio!=null}" >            
+            <h:outputLabel value="Calcula la distancia entre #{gestorDePuntos.punto} y #{gestorDePuntos.puntoAleatorio}" />
+            
+            <h:form>
+                <h:outputLabel value="Introduce el resultado" />
+                <h:inputText id="resul" value="#{gestorDePuntos.resul}" required="true" 
+                             requiredMessage="Eesultado obligatorio">
+                </h:inputText> 
+                <h:commandButton value="Seleccionar" action="#{gestorDePuntos.comprobarResul()}" />            
+            </h:form>
+            
+            <h:outputLabel value="Felicidades, has acertado!" rendered="#{gestorDePuntos.acierto and gestorDePuntos.resul != null}" />
+            <h:outputLabel value="Lo siento, has fallado" rendered="#{!gestorDePuntos.acierto and gestorDePuntos.resul != null}" />
+        
+        </h:panelGrid>
+    </h:body>
+</html>
+

@@ -141,11 +141,38 @@ public class DaoBuses {
         devolverConexion(cn);
     }
     
+    public static ArrayList<Ruta> rutas(){        
+        
+        ArrayList<Ruta> rutas=new ArrayList<Ruta>();
+        Connection cn=conexion();       
+        try {
+            Statement st=cn.createStatement();
+             ResultSet rs=st.executeQuery("SELECT `Id_Ruta`, `CiudadOrigen`, `CiudadDestino`, `HoraSalida`, `HoraLlegada`, `Tarifa`, `Id_Placa` FROM `rutas` " );
+            while (rs.next()){
+                Ruta r=new Ruta();
+                r.setId_ruta(rs.getInt("Id_Ruta"));
+                r.setCiudadOrigen(rs.getString("CiudadOrigen"));
+                r.setCiudadDestino(rs.getString("CiudadDestino"));
+                r.setHoraSalida(rs.getDate("HoraSalida"));
+                r.setHoraLlegada(rs.getDate("HoraLlegada"));
+                r.setTarifa(rs.getFloat("Tarifa"));
+                r.setId_placa(rs.getString("Id_Placa"));
+                
+                rutas.add(r);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en Dao buses " + ex.getMessage());
+        }
+         
+         devolverConexion(cn);
+         return rutas;   
+    }
+    
     
     /*
     public static void main(String args[]){
         System.out.println(conexion());
     }
     */
-    
 }
+

@@ -21,12 +21,10 @@
             </h:panelGrid>            
         </h:form>
         
-        <h:outputLabel value="Viendo rutas de #{rutas.busSelec}" 
-                       rendered="#{rutas.busSelec!=null}" />
+        <h:outputLabel value="Viendo rutas de #{rutas.busSelec}" rendered="#{rutas.busSelec!=null}" />
         
         <h:form>
-        <h:dataTable value="#{rutas.rutas}" var="ruta" 
-                     rendered="#{rutas.busSelec!=null and rutas.rutas.size() >0}">
+        <h:dataTable value="#{rutas.rutas}" var="ruta" rendered="#{rutas.busSelec!=null and rutas.rutas.size() >0}">
         
             <h:column>
                 <f:facet name="header">
