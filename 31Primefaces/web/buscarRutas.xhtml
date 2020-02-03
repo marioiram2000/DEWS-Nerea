@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+        <p:layout style="min-width:400px;min-height:200px;">        
+            <p:layoutUnit position="west" resizable="true" size="400" minSize="40">
+                <h3>Rango de precios</h3>
+                <h:panelGrid columns="1" style="margin-bottom: 10px">
+                    <h:outputText id="displayRange" value="Between #{mB_Rutas.precioMin} and #{mB_Rutas.precioMax}" />
+                    <p:slider for="min,max" display="displayRange" style="width: 300px" range="true" displayTemplate="Between {min} and {max}" />
+                    <p:commandButton value="Buscar rutas" action="#{mB_Rutas.cargarRutas()}" ajax="false"/>
+                </h:panelGrid>
+                <h:inputHidden id="min" value="#{mB_Rutas.precioMin}" />
+                <h:inputHidden id="max" value="#{mB_Rutas.precioMax}" />
+
+            </p:layoutUnit>
+        
+            <p:layoutUnit position="center">
+                Center
+            </p:layoutUnit>
+        </p:layout>
+        </h:form>
+    </h:body>
+</html>
+
