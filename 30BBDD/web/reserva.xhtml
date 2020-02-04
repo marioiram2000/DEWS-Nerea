@@ -1,12 +1,30 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>RESERVA</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:outputLabel value="Información de la ruta seleccionada: #{reserva.ruta.ciudadOrigen}-#{reserva.ruta.ciudadDestino}, Salida: #{reserva.ruta.horaSalida}, Llegada: #{reserva.ruta.horaLlegada}, #{reserva.ruta.tarifa}€"/>
+        <h:dataTable value="#{mb_Reserva.reservas}" var="reserva">     
+                
+                <h:column>
+                    <f:facet name="header">
+                        Asiento
+                    </f:facet>                
+                    <h:outputLabel value="#{reserva.numAsiento}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        Cliente
+                    </f:facet>                
+                    <h:outputLabel value="#{reserva.nombre}"/>
+                </h:column>
+                
+            </h:dataTable>  
     </h:body>
 </html>
 

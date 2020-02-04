@@ -7,9 +7,10 @@
         <title>Rutas</title>
     </h:head>
     <h:body>      
-        <h1>Todas las rutas:</h1>
-        <h:dataTable value="#{rutasCompra.getTodasRutas}" var="ruta" rendered="#{RutasCompra.rutas!=null and RutasCompra.rutas.size() >0}">      
-            <h:form>
+        <h1>Todas las rutas:</h1> 
+        <h:form>
+            <h:dataTable value="#{rutasCompra.rutas}" var="ruta">     
+                
                 <h:column>
                     <f:facet name="header">
                         ORIGEN
@@ -46,13 +47,12 @@
                     <f:facet name="header">
                         COMPRA
                     </f:facet>                
-                    <h:commandLink value="COMPRAR">
-
+                    <h:commandLink value="COMPRAR" action="#{reserva.setRuta(ruta)}">
                     </h:commandLink>      
-                </h:column>   
-            </h:form>
-        </h:dataTable>  
-        
+                </h:column>
+                
+            </h:dataTable>  
+        </h:form>
     </h:body>
 </html>
 

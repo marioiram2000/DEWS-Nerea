@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dao;
 
 import beans.Bus;
+import beans.Reserva;
 import beans.Ruta;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,11 +13,10 @@ import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import mbeans.Mb_Reserva;
 
 public class DaoBuses {
-    
-    
-    
+
     public static Connection conexion(){
         
         Connection cn=null;
@@ -142,7 +137,6 @@ public class DaoBuses {
     }
     
     public static ArrayList<Ruta> rutas(){        
-        
         ArrayList<Ruta> rutas=new ArrayList<Ruta>();
         Connection cn=conexion();       
         try {
@@ -164,10 +158,37 @@ public class DaoBuses {
             System.out.println("Error en Dao buses " + ex.getMessage());
         }
          
-         devolverConexion(cn);
-         return rutas;   
+        devolverConexion(cn);
+        return rutas;   
     }
     
+    public static ArrayList<Reserva> reservas(int id_ruta){        
+        ArrayList<Reserva> reservas=new ArrayList<Reserva>();
+        Connection cn=conexion();       
+        try {
+            Statement st=cn.createStatement();
+             ResultSet rs=st.executeQuery("SELECT `Id_Ticket`, `Pagado`, reservas.Id_DNI, `NumAsiento`, `nombre`, `Id_Ruta` "
+                                        + "FROM `reservas`, `clientes` "
+                                        + "WHERE reservas.Id_DNI=clientes.Id_DNI "
+                                        + "AND Id_Ruta = "+id_ruta );
+            while (rs.next()){
+                Reserva r=new Reserva();
+                
+                r.setId_ticket(rs.getInt("Id_Ticket"));
+                r.setPagado(rs.getInt("Pagado"));
+                r.setNumAsiento(rs.getInt("NumAsiento"));
+                r.setId_dni(rs.getString("Id_DNI"));
+                r.setNombre(rs.getString("nombres"));
+                r.setId_ruta(id_ruta);
+                
+                reservas.add(r);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error en Dao buses " + ex.getMessage());
+        }         
+        devolverConexion(cn);
+        return reservas;   
+    }
     
     /*
     public static void main(String args[]){

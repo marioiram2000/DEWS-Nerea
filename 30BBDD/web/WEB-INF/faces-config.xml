@@ -8,4 +8,14 @@
         <managed-bean-class>mbeans.Rutas</managed-bean-class>
         <managed-bean-scope>view</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>rutasCompra</managed-bean-name>
+        <managed-bean-class>mbeans.RutasCompra</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>mb_Reserva</managed-bean-name>
+        <managed-bean-class>mbeans.Mb_Reserva</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
 </faces-config>

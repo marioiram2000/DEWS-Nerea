@@ -1,7 +1,7 @@
 package beans;
 import java.util.Date;
 
-public class Ruta {
+public class Ruta{
     
     private int id_ruta;
     private String ciudadOrigen;
@@ -91,6 +91,11 @@ public class Ruta {
 
     public void setEditando(boolean editando) {
         this.editando = editando;
+    }
+
+    @Override
+    public String toString() {
+        return "Ruta{" + "id_ruta=" + id_ruta + ", ciudadOrigen=" + ciudadOrigen + ", ciudadDestino=" + ciudadDestino + ", horaSalida=" + horaSalida + ", horaLlegada=" + horaLlegada + ", tarifa=" + tarifa + ", id_placa=" + id_placa + ", editando=" + editando + '}';
     }
     
     
