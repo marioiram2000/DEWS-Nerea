@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="NOMBRE"/>
+                <h:inputText value="#{mBRegistro.persona.nombre}" required="true" id="nombre" 
+                            requiredMessage="Nombre obligatorio" validator="#{mBRegistro.validaNombre}"/>
+                <h:message for="nombre"/>
+                
+                <h:outputLabel value="EDAD"/>
+                <h:inputText value="#{mBRegistro.persona.edad}" required="true" id="edad" validatorMessage="Debe ser mayor de 18 años">
+                    <f:validateLongRange minimum="18" maximum="100"/>
+                </h:inputText>
+                <h:message for="edad"/>
+                
+                <h:outputLabel value="Fecha nacimiento"/>
+                <h:inputText value="#{mBRegistro.persona.fechaNac}" id="fecha">
+                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                </h:inputText>
+                <h:message for="fecha"/>
+                
+                <h:outputLabel value="Contraseña"/>
+                <h:inputSecret value="#{mBRegistro.pass}" id="pass" validatorMessage="La contraseña debe contener entre 8 y 20 caracteres, al menos un numero, una minuscula y una mayuscula">
+                    <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20})" />                 
+                </h:inputSecret>
+                <h:message for="pass"/>
+                
+                <h:outputLabel value="Codigo registro"/>
+                <h:inputSecret id="cod">
+                    <f:validator validatorId="validadorCodigo"/>      
+                </h:inputSecret>
+                <h:message for="cod"/>
+                
+                <h:outputLabel value="CICLO"/>
+                <h:selectOneListbox id="ciclo">
+                    <f:selectItems value="#{mBRegistro.todosCiclos()}" var="ciclo" itemLabel="#{ciclo.nombre}" itemValue="#{ciclo}"/>
+                    <f:converter converterId="conversorCiclo"/>
+                </h:selectOneListbox>
+                <h:message for="ciclo"/>
+                
+            </h:panelGrid>
+            <h:commandButton value="ENVIAR" action="registrado"/>
+        </h:form>
+    </h:body>
+</html>

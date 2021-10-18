@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+            
+            <h:panelGrid columns="6" cellpadding="5">
+             
+                <p:outputLabel for="desde" value="Desde"/>
+                <p:calendar id="desde" value="#{mBFechas.desde}" pattern="dd/MM/yyyy HH:mm:ss"/>
+
+                <p:outputLabel for="hasta" value="hasta"/>
+                <p:calendar id="hasta" value="#{mBFechas.hasta}"  pattern="dd/MM/yyyy HH:mm:ss"/>
+
+                
+                <h:commandButton value="VER RUTAS" action="${mBFechas.verRutas()}"/>
+                <p:outputLabel value="Fecha fin debe ser mayor a Fecha inicio" rendered="${mBFechas.errorFecha}"/>
+            </h:panelGrid>   
+            
+<!--        
+        <p:outputLabel value="HAY RUTAS" rendered="#{mBFechas.rutas.size() gt 0 }" />
+        <p:outputLabel value="NO HAY RUTAS" rendered="#{mBFechas.rutas.size() lt 1}"/>
+        -->
+            <div class="card">
+                <p:dataTable id="products1" var="ruta" value="#{mBFechas.rutas}" editable="true" style="margin-bottom:20px"  rendered="#{mBFechas.rutas.size() gt 0}">
+                    <p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" />
+                    <p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" />
+
+                    <p:column headerText="ID">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{ruta.id_ruta}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText id="modelInput" value="#{ruta.id_ruta}" style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="ORIGEN">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{ruta.ciudadOrigen}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{ruta.ciudadOrigen}" style="width:100%" label="ORIGEN"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="DESTINO">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{ruta.ciudadDestino}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:inputText value="#{ruta.ciudadDestino}" style="width:100%" label="DESTINO"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="SALIDA">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="#{ruta.horaSalida}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:calendar  value="#{mBFechas.desde}" pattern="dd/MM/yyyy HH:mm:ss" style="width:100%"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="PRECIO">
+                        <p:cellEditor>
+                            <f:facet name="output">
+                                <h:outputText value="$#{ruta.tarifa}"/>
+                            </f:facet>
+                            <f:facet name="input">
+                                <p:spinner value="#{ruta.tarifa}" style="width:100%" label="PRECIO"/>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column style="width:6rem">
+                        <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+                    </p:column>
+                    <p:column>
+                        <h:commandLink value="VER PASAJEROS" action="${mBFechas.verPasajeros(ruta)}"/>
+                    </p:column>
+                </p:dataTable>
+                <h:commandButton value="GUARDAR CAMBIOS" action="${mBFechas.updateCambios()}" rendered="#{mBFechas.rutas.size() gt 0}"/>
+            </div>
+            <div>
+                <h:panelGrid columns="2" cellpadding="5" rendered="${mBFechas.pasajeros!=null}">
+                    <h5 style="margin-top: 0" >PASAJEROS de ${mBFechas.rutaSeleccionada.id_ruta}</h5>
+                    <p:pickList id="pickList" value="#{mBFechas.pasajeros}" var="pasajeros" itemLabel="#{pasajeros}" itemValue="#{pasajeros}"/>
+                    <h:commandButton value="AVISAR PASAJEROS SELECCIONADOS" action="${mBFechas.avisar()}"/>
+                </h:panelGrid>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

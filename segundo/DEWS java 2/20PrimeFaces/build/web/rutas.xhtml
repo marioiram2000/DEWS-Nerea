@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+     
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       
+        <h:form>
+            <h:panelGrid columns="3" style="margin-bottom: 10px">
+                <h:outputText id="displayRange" value="Entre #{mBrutas.limInf} y #{mBrutas.limSup} €"/>
+                <p:slider for="txt6,txt7" display="displayRange" style="width: 400px" range="true"
+                          displayTemplate="Between {min} and {max}"
+                          minValue="0" maxValue="200"/>
+                <p:commandLink value="CARGAR RUTAS" action="#{mBrutas.cargarRutas()}" ajax="false" />
+            </h:panelGrid>
+            <h:inputHidden id="txt6" value="#{mBrutas.limInf}"/>
+            <h:inputHidden id="txt7" value="#{mBrutas.limSup}"/>
+        </h:form>
+        
+        
+        <h:form id="form">
+            <div class="card">       
+                <p:carousel value="#{mBrutas.rutas}" var="ruta" responsive="true" 
+                            numVisible="6" rendered="#{mBrutas.rutas!=null}" >
+                    <div class="product">
+                        <div class="product-grid-item p-p-5">
+                            <div class="product-grid-item-top">
+                                <p:outputLabel value="#{ruta.ciudadOrigen} - #{ruta.ciudadDestino}" />
+                            </div>
+                            <div class="product-grid-item-content">
+                                <p:graphicImage  name="img/#{ruta.bus.imagen}" library="resources"
+                                                 height="40" style="text-align: center"/>
+                            </div>
+                            <div class="product-grid-item-bottom">
+                                <p:outputLabel value="#{ruta.tarifa} €" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <f:facet name="footer">
+                        <p:outputLabel value="#{mBrutas.rutas.size()} RUTAS" />
+                    </f:facet>
+                </p:carousel>
+            </div>
+        </h:form>
+
+    </h:body>
+</html>
+

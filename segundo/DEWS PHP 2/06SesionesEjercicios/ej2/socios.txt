@@ -1,0 +1,4 @@
+mario   mario   90
+pepe    pepe    10
+ibai    ibai    20
+salama  salama  20

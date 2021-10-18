@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:outputText value="Selecciona bus"/>
+            <h:selectOneRadio value="#{mBRutas.busActual}" onchange="submit()" valueChangeListener="#{mBRutas.cargarRutasBus()}">
+                <f:selectItems value="#{mBRutas.buses}" var="bus" itemValue="#{bus.id_placa}" itemLabel="#{bus.id_placa}" />
+            </h:selectOneRadio>
+        </h:form>
+        <h:form>
+            <h:dataTable value="#{mBRutas.rutas}" var="ruta">
+                <h:column>
+                    <f:facet name="header">PLACA</f:facet>
+                    <h:outputLabel value="#{ruta.id_placa}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">ORIGEN</f:facet>
+                    <h:outputLabel value="#{ruta.ciudadOrigen}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DESTINO</f:facet>
+                    <h:outputLabel value="#{ruta.ciudadDestino}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Hora Salida</f:facet>
+                    <h:outputLabel value="#{ruta.horaSalida}">
+                        <f:convertDateTime pattern="dd-MM-yyyy hh:mm" timeZone="GMT+1"/>
+                    </h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Hora llegada</f:facet>
+                    <h:outputLabel value="#{ruta.horaLlegada}">
+                        <f:convertDateTime pattern="dd-MM-yyyy hh:mm" timeZone="GMT+1"/>
+                    </h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">TARIFA</f:facet>
+                    <h:outputLabel value="#{ruta.tarifa} €" rendered="#{!ruta.editando}"/>
+                    <h:inputText value="#{ruta.tarifa}" rendered="#{ruta.editando eq true}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"></f:facet>
+                    <h:commandLink value="EDITAR" rendered="#{ruta.editando eq false}">
+                        <f:setPropertyActionListener target="#{ruta.editando}" value="true"/>
+                    </h:commandLink>
+                    <h:commandLink value="GUARDAR" rendered="#{ruta.editando eq true}" action="#{mBRutas.cambiarTarifa(ruta)}">
+                        <f:setPropertyActionListener target="#{ruta.editando}" value="false"/>
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

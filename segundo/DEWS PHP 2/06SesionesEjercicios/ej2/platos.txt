@@ -1,0 +1,8 @@
+patatas brabas  primero 3
+jamon con melon primero 4
+croquetas   primero 4
+ensaladilla primero 6
+filete  segundo 8
+arroz   segundo 7
+hamburguesa segundo 12
+salmon  segundo 10

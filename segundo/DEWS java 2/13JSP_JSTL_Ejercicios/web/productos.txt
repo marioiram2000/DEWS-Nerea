@@ -1,0 +1,10 @@
+100;Monitor 22 pulgadas
+100;Monitor 27 pulgadas
+100;Teclado wireless
+300;Pendrive 32Gb
+200;Laptop 15 pulgadas
+300;HDD 2Tb
+300;SSD 1Tb
+200;Laptop 19 pulgadas
+300;Alfombrilla
+100;Ventilador CPU
